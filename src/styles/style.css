@@ -61,6 +61,7 @@ hr {
     border-color: gray;
     width: 100%;
     border-width: 1px 0 0 0;
+    margin: 0px;
 }
 
 a {
@@ -105,6 +106,22 @@ table {
     & td, th {
         border: 1px solid #2C2C2C;
         padding: 8px;
+    }
+
+}
+
+table.archives {
+    user-select: none;
+    tbody {
+        /* font-family: "Segoe UI"; */
+        /* font-size: 14px; */
+        /* font-weight: normal; */
+        tr {
+            cursor: pointer;
+            &:hover {
+                background-color: #1C1C1C;
+            }
+        }
     }
 
 }

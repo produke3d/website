@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 attr = `data-color="${p.Id}"`;
             }
             return `
-                <div class="flex-row flex-no-wrap flex-justify-content-end flex-gap-4" ${attr}>
+                <div class="flex-row flex-no-wrap flex-justify-content-center flex-gap-4" ${attr}>
                     <span>${p.Name}</span>
                     <span>[${p.Score}]</span>
                 </div>
@@ -68,14 +68,43 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     };
 
-    for (const demo of demoDatabase) {
+    const getWinner = demo => {
+
+        const winners = demo.Players.filter(p => p.Winner);
+
+        if (isTeamMode(demo.Mode)) {
+
+            const winnerTeams = new Set(winners.map(p => p.Team));
+            if (winnerTeams.size > 1) {
+                return "DRAW";
+            } else {
+                switch (winnerTeams.values().next().value) {
+                    case 1: return `<span data-team="1">BLUE</span>`;
+                    case 2: return `<span data-team="2">RED</span>`;
+                    case 3: return `<span data-team="3">GREEN</span>`;
+                    case 4: return `<span data-team="4">BROWN</span>`;
+                }
+            }
+
+        } else {
+            if (winners.length > 1) {
+                return "DRAW";
+            } else {
+                return `<span data-color="${winners[0].Id}">${winners[0].Name}</span>`;
+            }
+        }
+
+    };
+
+    for (const demo of demoDatabase.sort((a,b) => new Date(b.StartDateTime) - new Date(a.StartDateTime))) {
         trs.push(`
             <tr>
-                <td>${demo.StartDateTime.replace(" ", "<br>")}</td>
-                <td>${gameModeDictionary[demo.Mode]}</td>
+                <td style="white-space: nowrap;">${demo.StartDateTime.replace(" ", "<br>")}</td>
+                <td style="white-space: nowrap;">${gameModeDictionary[demo.Mode]}</td>
                 <td>${getMap(demo)}</td>
-                <td>${getPlayers(demo)}</td>
-                <td>${demo.Duration}</td>
+                <td style="white-space: nowrap;">${getPlayers(demo)}</td>
+                <td style="white-space: nowrap;">${demo.Duration}</td>
+                <!-- <td style="white-space: nowrap;">${getWinner(demo)}</td> -->
             </tr>
         `);
     }

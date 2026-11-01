@@ -37,7 +37,7 @@ img#site-author {
 div#navbar {
 
     background-color: #1E1E1E;
-    padding: 12px;
+    padding: 16px;
     /* position: sticky; */
     top: 0;
     z-index: 999;
@@ -45,16 +45,16 @@ div#navbar {
 
     & > a {
         font-weight: bold;
-        font-size: 14px;
-        line-height: 14px;
+        font-size: 16px;
+        line-height: 16px;
         &.active {
             text-decoration: underline;
         }
     }
 
     & > span.separator {
-        font-size: 14px;
-        line-height: 14px;
+        font-size: 16px;
+        line-height: 16px;
         color: var(--progold);
     }
 
