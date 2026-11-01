@@ -24,83 +24,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         TERM: 9
     };
 
-    const flagWinners = demo => {
-
-        const durationInSeconds = demo.Tics / 26;
-        const durationInMinutes = durationInSeconds / 60;
-
-        switch (demo.Mode) {
-
-            case GameMode.DM: case GameMode.TERM: {
-
-                let goal = demo.ScoreLimit;
-
-                if (demo.TimeLimit && durationInMinutes >= demo.TimeLimit) {
-                    goal = demo.Players.max(p => p.Score);
-                }
-
-                for (const player of demo.Players) {
-                    if (player.Score >= goal) {
-                        player.Winner = true;
-                    }
-                }
-
-                break;
-
-            }
-
-            case GameMode.LMS: {
-
-                for (const player of demo.Players) {
-                    if (player.Score >= 0) {
-                        player.Winner = true;
-                    }
-                }
-
-                break;
-
-            }
-
-            case GameMode.TDM: case GameMode.CTF: case GameMode.ONEFCTF: case GameMode.ADCTF: {
-
-                const scoresByTeam = demo.Players.reduce((a, p) => {
-                    if (!a[p.Team]) a[p.Team] = 0;
-                    a[p.Team] += p.Score;
-                    return a;
-                }, []);
-
-                let goal = demo.ScoreLimit;
-
-                if (demo.TimeLimit && durationInMinutes >= demo.TimeLimit) {
-                    goal = scoresByTeam.max(s => s);
-                }
-
-                for (const player of demo.Players) {
-                    if (scoresByTeam[player.Team] >= goal) {
-                        player.Winner = true;
-                    }
-                }
-
-                break;
-
-            }
-            
-            case GameMode.TLMS: {
-
-                for (const player of demo.Players) {
-                    if (player.Score >= 0) {
-                        player.Winner = true;
-                    }
-                }
-
-                break;
-
-            }
-            
-        }
-
-    };
-
     const gameModeDictionary = Object.keys(GameMode).reduce((dic, key) => {
         dic[GameMode[key]] = key;
         return dic;
@@ -146,7 +69,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     for (const demo of demoDatabase) {
-        flagWinners(demo);
         trs.push(`
             <tr>
                 <td>${demo.StartDateTime.replace(" ", "<br>")}</td>

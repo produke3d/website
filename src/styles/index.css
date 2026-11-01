@@ -9,19 +9,19 @@ body {
 
 div#site-header {
     position: absolute; 
-    top: 64px; 
+    top: 24px; 
     /* left: calc(50% - 144px); */
     width: calc(100% - 32px);
 }
 
 img#icon {
     image-rendering: pixelated;
-    height: 128px;
+    height: 64px;
 }
 
 img#logo {
     image-rendering: pixelated;
-    height: 32px;
+    height: 24px;
 }
 
 img#author {
@@ -37,7 +37,7 @@ img#site-author {
 div#navbar {
 
     background-color: #1E1E1E;
-    padding: 16px;
+    padding: 12px;
     /* position: sticky; */
     top: 0;
     z-index: 999;
@@ -45,12 +45,16 @@ div#navbar {
 
     & > a {
         font-weight: bold;
+        font-size: 14px;
+        line-height: 14px;
         &.active {
             text-decoration: underline;
         }
     }
 
     & > span.separator {
+        font-size: 14px;
+        line-height: 14px;
         color: var(--progold);
     }
 
@@ -65,7 +69,7 @@ select#lang {
     height: 22px;
 }
 
-div:has(>select#lang)::after {
+div[data-suggestion]:has(>select#lang)::after {
     content: attr(data-suggestion);
     color: var(--progold);
     font-size: 12px;
