@@ -1174,14 +1174,14 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                 CheckBoxToSwitch("game-param-exploitMode", "Ask for tiles and visibility (requires voting)");
                 CheckBoxToSwitch("game-param-allowMods", "Ask for all external files (requires voting)");
                 CheckBoxToSwitch("game-param-disableAutoaim", "Ask for disabled autoaim (requires voting)");
-                CheckBoxToSwitch("game-param-_nn_ipv6", "Use Direct IPv6 address between peers instead of Relay/STUN tunnels");
+                CheckBoxToSwitch("game-param-_nn_ipv6", "Use Direct IPv6 address between peers instead of Relay/STUN tunnels");               
 
                 // =================================================================================
                 // VARIABLES
                 // =================================================================================
 
                 const root = document.getElementById("mode")?.parentNode?.nextSibling?.querySelector("div");
-                const isReady = document.querySelectorAll(`[id^="game-param"]`).length > 0;         
+                const isReady = document.querySelectorAll(`[id^="game-param"]`).length > 0; 
 
                 // =================================================================================
                 // EARLY RETURNS
@@ -1219,7 +1219,7 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                             }
 
                             /* prevent style from applying to other ports */
-                            div.modal-body:has(select#exec > optgroup > option[value="produke"]:checked) {
+                            /*div.modal-body:has(select#exec > optgroup > option[value="produke"]:checked) {*/
                             
                                 /* ================================================================================= */
                                 /* GRID HACK                                                                         */
@@ -1228,7 +1228,7 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                                 /* outter div */
                                 div:has(>#mode) + div {
                                     display: grid;
-                                    grid-template-columns: 111px repeat(3, 1fr);
+                                    grid-template-columns: repeat(4, 1fr);
                                     /*gap: 8px;*/
                                     grid-auto-rows: auto;
                                 }
@@ -1250,7 +1250,7 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                                 /* inner div */
                                 div:has(>#mode) + div>div:first-child {
                                     display: grid;
-                                    grid-template-columns: 111px repeat(3, 1fr);
+                                    grid-template-columns: repeat(4, 1fr);
                                     /*gap: 8px;*/
                                     grid-row: 7;
                                     grid-auto-rows: auto;
@@ -1261,9 +1261,9 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                                     background-color: #17191c;
                                     border: 1px solid #495057;
                                     border-top: none;
-                                    border-bottom: none;
-                                    padding: 4px 16px !important;
+                                    border-bottom: none;                                    
                                     box-sizing: content-box;
+                                    padding: 4px 16px;
                                 }
 
                                 /* alternative fake box background for switches */
@@ -1287,7 +1287,7 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                                     display: none;
                                 }
 
-                                 /* title label separator */
+                                /* title label separator */
                                 div.title-label {
                                     font-family: "Candara";
                                     font-weight: bold;
@@ -1344,36 +1344,54 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
 
                                 div#room-settings-label { grid-row: 1; }
                                 div#room-settings-header { grid-row: 1; }
-                                div:has(>input[placeholder="Room Name"]) { grid-row: 2;  }
-                                div:has(>input[placeholder="Password"]) { grid-row: 3; }
+                                div:has(>input#room-name) { grid-row: 2;  }
+                                div:has(>input#password) { grid-row: 3; }
                                 div:has(>input#max-players) { grid-row: 4; }
-                                div:has(>div.form-switch > label[title=""]) { grid-row: 5 !important; grid-column: 1 / span 4 !important; padding-left: 111px !important;}
+                                /*div:has(>div.form-switch > label[title=""]) { grid-row: 5 !important; grid-column: 1 / span 4 !important; padding-left: 185px !important; }*/
 
-                                div:has(>div>div>input#game-param-_nn_ipv6)    { grid-row: 1; grid-column: 1 / span 2 !important; padding-left: 111px; border-left: 1px solid #495057; }
-                                div:has(>div>div>input#game-param-uploadDemos) { grid-area: 1 / 3 !important; }
-                                div:has(>div>div>input#game-param-masterSlave) { grid-area: 1 / 4 !important; border-right: 1px solid #495057; padding-right: 16px; }
-                                div:has(>div>div>input#game-param-lockOptions) { grid-row: 2; grid-column: 1 / span 2 !important; padding-left: 111px; border-left: 1px solid #495057; }
-                                div:has(>div>div>input#game-param-lockPlayers) { grid-area: 2 / 3 !important; }
-                                div:has(>div>div>input#game-param-lockSpecs)   { grid-area: 2 / 4 !important; border-right: 1px solid #495057; padding-right: 16px; }
+                                /* hide room */
+                                div:not(.room-field):not(.parameter-row):has(>div.form-switch input:not([id^="game-param"])) { 
+                                    grid-row: 5 !important; 
+                                    grid-column: 1 / span 4 !important;
+                                    padding-left: 190px !important;
+                                }
+                                
+                                /* ipv6 only */
+                                div.room-field:has(>div.form-switch) { 
+                                    /*
+                                    grid-row: 6 !important; 
+                                    grid-column: 1 / span 4 !important;
+                                    padding-left: 190px !important;
+                                    */
+                                   /* just hide this, might cause confusion */
+                                   display: none !important;
+                                }
+
+                                div.parameter-row:has(#game-param-_nn_ipv6)    { grid-row: 1; grid-column: 1 / span 2 !important; padding-left: 190px; border-left: 1px solid #495057; }
+                                div.parameter-row:has(#game-param-uploadDemos) { grid-area: 1 / 3 !important; }
+                                div.parameter-row:has(#game-param-masterSlave) { grid-area: 1 / 4 !important; border-right: 1px solid #495057; padding-right: 16px; }
+                                div.parameter-row:has(#game-param-lockOptions) { grid-row: 2; grid-column: 1 / span 2 !important; padding-left: 190px; border-left: 1px solid #495057; }
+                                div.parameter-row:has(#game-param-lockPlayers) { grid-area: 2 / 3 !important; }
+                                div.parameter-row:has(#game-param-lockSpecs)   { grid-area: 2 / 4 !important; border-right: 1px solid #495057; padding-right: 16px; }
                                 div#room-settings-footer { grid-row: 3; }
 
                                 /* ================================================================================= */
                                 /* MATCH SETTINGS                                                                    */
                                 /* ================================================================================= */
 
-                                div#match-settings-label                        { grid-row: 4; }
-                                div#match-settings-header                       { grid-row: 4; }
-                                div:has(>div>select#game-param-multiplayerMode) { grid-row: 5; }
-                                div:has(>div>select#game-param-monstersSkill)   { grid-row: 6; }
-                                div:has(>div>select#game-param-mapType)         { grid-row: 7; }
-                                div:has(>div>select#game-param-episodeAndLevel) { grid-row: 8; }
-                                div:has(>div>span>input#game-param-map)         { grid-row: 9; }
-                                div:has(>div>div>input#game-param-scoreLimit)   { grid-row: 10; }
-                                div:has(>div>div>input#game-param-timeLimit)    { grid-row: 11; }
-                                div:has(>div>div>input#game-param-extraLives)   { grid-row: 12; }
-                                div:has(>div>div>input#game-param-botsNum)      { grid-row: 13; }
-                                div:has(>div>div>input#game-param-botsAi)       { grid-row: 14 !important; grid-column: 1 / span 4 !important; padding-left: 111px !important; border-left: 1px solid #495057; border-right: 1px solid #495057; }
-                                div#match-settings-footer                       { grid-row: 15; }
+                                div#match-settings-label                           { grid-row: 4; }
+                                div#match-settings-header                          { grid-row: 4; }
+                                div.parameter-row:has(#game-param-multiplayerMode) { grid-row: 5; }
+                                div.parameter-row:has(#game-param-monstersSkill)   { grid-row: 6; }
+                                div.parameter-row:has(#game-param-mapType)         { grid-row: 7; }
+                                div.parameter-row:has(#game-param-episodeAndLevel) { grid-row: 8; }
+                                div.parameter-row:has(#game-param-map)             { grid-row: 9; }
+                                div.parameter-row:has(#game-param-scoreLimit)      { grid-row: 10; }
+                                div.parameter-row:has(#game-param-timeLimit)       { grid-row: 11; }
+                                div.parameter-row:has(#game-param-extraLives)      { grid-row: 12; }
+                                div.parameter-row:has(#game-param-botsNum)         { grid-row: 13; }
+                                div.parameter-row:has(#game-param-botsAi)          { grid-row: 14 !important; grid-column: 1 / span 4 !important; padding-left: 190px !important; border-left: 1px solid #495057; border-right: 1px solid #495057; }
+                                div#match-settings-footer                          { grid-row: 15; }
 
                                 /* ================================================================================= */
                                 /* USERS SETTINGS                                                                    */
@@ -1381,14 +1399,14 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
 
                                 div#user-settings-label                           { grid-row: 16; }
                                 div#user-settings-header                          { grid-row: 16; }
-                                div:has(>div>span>input#game-param-playDmo)       { grid-row: 17; }
-                                div:has(>div>select#game-param-color)             { grid-row: 18; }
-                                div:has(>div>select#game-param-team)              { grid-row: 19; }
-                                div:has(>div>div>input#game-param-recordDmo)      { grid-row: 20; grid-column: 1 / span 2 !important; padding-left: 111px; border-left: 1px solid #495057; }
-                                div:has(>div>div>input#game-param-spec)           { grid-row: 20; grid-column: 3 / span 2 !important; padding-right: 111px; border-right: 1px solid #495057; }
-                                div:has(>div>div>input#game-param-exploitMode)    { grid-row: 21; grid-column: 1 / span 2 !important; padding-left: 111px; border-left: 1px solid #495057; }
-                                div:has(>div>div>input#game-param-allowMods)      { grid-area: 21 / 3 !important; }
-                                div:has(>div>div>input#game-param-disableAutoaim) { grid-area: 21 / 4 !important; border-right: 1px solid #495057; padding-right: 16px; }
+                                div.parameter-row:has(#game-param-playDmo)        { grid-row: 17; }
+                                div.parameter-row:has(#game-param-color)          { grid-row: 18; }
+                                div.parameter-row:has(#game-param-team)           { grid-row: 19; }
+                                div.parameter-row:has(#game-param-recordDmo)      { grid-row: 20; grid-column: 1 / span 2 !important; padding-left: 190px; border-left: 1px solid #495057; }
+                                div.parameter-row:has(#game-param-spec)           { grid-row: 20; grid-column: 3 / span 2 !important; padding-right: 111px; border-right: 1px solid #495057; }
+                                div.parameter-row:has(#game-param-exploitMode)    { grid-row: 21; grid-column: 1 / span 2 !important; padding-left: 190px; border-left: 1px solid #495057; }
+                                div.parameter-row:has(#game-param-allowMods)      { grid-area: 21 / 3 !important; }
+                                div.parameter-row:has(#game-param-disableAutoaim) { grid-area: 21 / 4 !important; border-right: 1px solid #495057; padding-right: 16px; }
                                 div#user-settings-footer                          { grid-row: 22; }
 
                                 /* ================================================================================= */
@@ -1498,21 +1516,28 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
 
                                 div:has(>#manual-param-controls) { grid-row: 8; }
 
+                                div.parameter-row:has(input[id^="game-param-netFlag"]),
+                                div.parameter-row:has(input[id^="game-param-weapFlag"]),
+                                div.parameter-row:has(input[id^="game-param-invFlag"]) {
+                                    padding-top: 0px !important;
+                                    padding-bottom: 0px !important;
+                                }
+
                                 /* ================================================================================= */
                                 /* INPUTS                                                                            */
                                 /* ================================================================================= */
+
+                                div.room-field {
+                                    margin: 0px !important;
+                                    display: flex;
+                                    flex-direction: row;
+                                    align-items: center;
+                                }
 
                                 div:has(>div>select[id^="game-param"]):not(.param-hidden),
                                 div:has(>div>span>input[id^="game-param"]):not(.param-hidden) {
                                     height: 38px !important;
                                     min-height: 38px !important;
-                                }
-
-                                div:has(>input[placeholder="Room Name"]),
-                                div:has(>input[placeholder="Password"]) {
-                                    display: flex;
-                                    flex-direction: row;
-                                    align-items: center;
                                 }
 
                                 div:has(>input) > label,
@@ -1531,6 +1556,7 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                                     width: 470px !important;
                                 }
 
+                                input[type="text"],
                                 input[type="plain"],
                                 input[type="password"],
                                 select[id^="game-param"] {
@@ -1543,14 +1569,14 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                                 }
 
                                 input[type="range"] {
-                                    width: 394px;
+                                    width: 376px;
                                 }
 
-                                div.form-switch {
-                                    display: inline-block !important;
+                                #launch-game-modal .parameter-row {
+                                    border-bottom: none !important;
                                 }
 
-                            }
+                            /*}*/
 
                         </style>
 
@@ -1563,14 +1589,14 @@ module.exports = function({deepClone, utils, mainStore }, gamedefs) {
                 // =================================================================================
 
                 // inject room name label
-                document.querySelector("[placeholder='Room Name']")?.insertAdjacentHTML("beforebegin", `
-                    <label>Room Name</label>
-                `);
+                // document.querySelector("[placeholder='Room Name']")?.insertAdjacentHTML("beforebegin", `
+                //     <label>Room Name</label>
+                // `);
 
                 // inject password label
-                document.getElementById("password")?.insertAdjacentHTML("beforebegin", `
-                    <label>Password</label>
-                `);
+                // document.getElementById("password")?.insertAdjacentHTML("beforebegin", `
+                //     <label>Password</label>
+                // `);
 
                 // inject room settings label
                 if (!document.getElementById("room-settings-label")) {
