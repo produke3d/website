@@ -1,0 +1,67 @@
+<title lang="en">Top Maps</title>
+<title lang="pt">Principais Mapas</title>
+
+<table id="top-maps" class="archives">
+    <thead>
+        <tr>
+            <th>
+                <span lang="en">#</span>
+                <span lang="pt">#</span>
+            </th>
+            <th>
+                <span lang="en">MAP</span>
+                <span lang="pt">MAPA</span>
+            </th>
+            <th>
+                <span lang="en">MATCHES</span>
+                <span lang="pt">PARTIDAS</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", async () => {
+
+        const demosDatabaseUrl = "https://raw.githubusercontent.com/produke3d/archives/master/demos.gzip";
+        //const demosDatabaseUrl = "https://cdn.jsdelivr.net/gh/produke3d/archives@master/demos.gzip";
+
+        const gzipBytes = await (await fetch(demosDatabaseUrl)).arrayBuffer();
+        const stream = new Blob([gzipBytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+        const demoDatabase = JSON.parse(await new Response(stream).text());
+
+        const trs = [];
+
+        const getMap = demo => {
+            if (demo.Volume === 0 && demo.Level === 7) {
+                return demo.Map.toUpperCase().replace(".MAP", "");
+            } else {
+                return `E${demo.Volume+1}L${demo.Level+1}`;
+            }
+        };
+
+        const mapCounts = demoDatabase.reduce((counts, demo) => {
+            const map = getMap(demo);
+            counts[map] = (counts[map] || 0) + 1;
+            return counts;
+        }, {});
+
+        let position = 0;
+        for (const [map, count] of Object.entries(mapCounts).sort((a, b) => b[1] - a[1])) {
+            position++;
+            trs.push(`
+                <tr>
+                    <td style="white-space: nowrap;">${position}</td>
+                    <td style="white-space: nowrap;">${map}</td>
+                    <td style="white-space: nowrap;">${count}</td>
+                </tr>
+            `);
+        }
+
+        document.querySelector("table#top-maps > tbody").insertAdjacentHTML("afterbegin", trs.join(""));
+
+    });
+
+</script>
