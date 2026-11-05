@@ -1,0 +1,63 @@
+<title lang="en">Player Ranking</title>
+<title lang="pt">Ranking de Jogadores</title>
+
+<table id="player-ranking" class="archives">
+    <thead>
+        <tr>
+            <th>
+                <span lang="en">#</span>
+                <span lang="pt">#</span>
+            </th>
+            <th>
+                <span lang="en">PLAYER</span>
+                <span lang="pt">JOGADOR</span>
+            </th>
+            <th>
+                <span lang="en">WINS</span>
+                <span lang="pt">VITÓRIAS</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", async () => {
+
+        const demosDatabaseUrl = "https://raw.githubusercontent.com/produke3d/archives/master/demos.gzip";
+        //const demosDatabaseUrl = "https://cdn.jsdelivr.net/gh/produke3d/archives@master/demos.gzip";
+
+        const gzipBytes = await (await fetch(demosDatabaseUrl)).arrayBuffer();
+        const stream = new Blob([gzipBytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+        const demoDatabase = JSON.parse(await new Response(stream).text());
+
+        const trs = [];
+
+        const playerCounts = demoDatabase.reduce((counts, demo) => {
+            for (const player of demo.Players) {
+                if (player.Winner) {
+                    const name = player.Name.toUpperCase().trim();
+                    counts[name] = (counts[name] || 0) + 1;
+                }
+            }
+            return counts;
+        }, {});
+
+        let position = 0;
+        for (const [player, count] of Object.entries(playerCounts).sort((a, b) => b[1] - a[1])) {
+            position++;
+            trs.push(`
+                <tr>
+                    <td style="white-space: nowrap;">${position}</td>
+                    <td style="white-space: nowrap;">${player}</td>
+                    <td style="white-space: nowrap;">${count}</td>
+                </tr>
+            `);
+        }
+
+        document.querySelector("table#player-ranking > tbody").insertAdjacentHTML("afterbegin", trs.join(""));
+
+    });
+
+</script>

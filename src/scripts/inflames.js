@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         fragmentShaderSource = fragmentShaderSource.replace(
             "vec3 fire = 1.25 * f * vec3(0.733, 0.635, 0.278);",
             "vec3 fire = 1.25 * f * vec3(0.733, 0.0, 0.0);"
-            //"vec3 fire = 1.5*vec3(f, fff, fff*fff);",
+            //"vec3 fire = 1.5*vec3(f, fff, fff*fff);"
         );
         fragmentShaderSource = fragmentShaderSource.replace(
             "sparks = sparkLife * sparksGray * vec3(0.733, 0.635, 0.278);",
