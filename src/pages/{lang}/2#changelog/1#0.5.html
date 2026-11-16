@@ -1,0 +1,282 @@
+<title lang="en">Alpha 0.5</title>
+<title lang="pt">Alpha 0.5</title>
+
+<style>
+    div.box > h1, div.box > hr:first-of-type {
+        display: none;
+    }
+</style>
+
+<div class="flex-columns">
+    <h1>Alpha 0.5</h1>
+    <div class="flex-grow"></div>
+    <h3>
+        <span lang="en">November, ??rd, 2026</span>
+        <span lang="pt">?? de Novembro de 2026</span>
+    </h3>
+</div>
+
+<hr>
+
+<a href="{$common}/res/download/produke-alpha-v0.5.zip" download="produke-alpha-v0.5.zip">
+    <div class="flex-columns flex-gap-16 flex-align-items-center">
+        <img style="width: 16px;" src="{$common}/res/icons/zip.png" alt="produke-alpha-v0.5.zip">
+        produke-alpha-v0.5.zip
+    </div>
+</a>
+
+<p>
+    <span lang="en">Greetings dukers, v0.5 is now released! This version has 2 main features: <strong>Spectator mode</Strong> and the <strong>Freecam mode</strong> (to be used with Spectator or with the Demo Viewer). There's finally a fix for players using duplicated duke colors now. There are other improvements and bug fixes too.</span>
+    <span lang="pt">Saudações dukais a todos, a v0.5 está lançada! Essa versão possui 2 novas funcionalidades principais: <strong>modo espectador</strong> e o <strong>modo de câmera livre</strong> (para ser usado com o modo espectador ou com o visualizador de demos). Finalmente há uma solução para evitar o uso de cores do duke duplicadas agora. Há também outras melhorias como também correções de bugs.</span>
+</p>
+
+<img src="{$common}/res/updates/produke-0.5.png" alt="produke-0.5">
+
+<h2>
+    <span lang="en">New Features</span>
+    <span lang="pt">Novas Funcionalidades</span>
+</h2>
+
+<ul>
+    <li>
+        <span lang="en"><strong>Now there's a spectator mode in proDuke</strong>. It can be acessed on the MAIN MENU:</span>
+        <span lang="pt"><strong>O proDuke agora possui o modo espectador</strong>. Ele pode ser acessado pelo menu principal:</span>
+        <span lang="en">
+            <ul>
+                <li>If you're currently an active player, the option will be named SPECTATE GAME, and entering it will give you the option to: (Y/ENTER) enter the spectator mode immediatelly (which will kill you and result in a -1, in case you're alive); (D) postpone it until your next DEATH, or (M) postpone it until the next MATCH.</li>
+                <li>If you're currently already spectating, the option will be named JOIN GAME, and entering it will give you the option to: (Y/ENTER) join the match immediatelly; or (M) postpone it until the next match.</li>
+                <li>If you have a postponed transition queued, the option will be named ABORT SPEC SWITCH, which will allow you to undo the postponing. Also, a icon will be displayed on your HUD, on the lower left side of the screen, to better signal that.</li>
+                <li>There are options to disable the freely going and leaving to spectator. More on that later.</li>
+            </ul>
+        </span>
+        <span lang="pt">
+            <ul>
+                <li>Se você atualmente está em jogo, a opção terá nome de SPECTATE GAME, e ao entrar nela será apresentada as opções: (Y/ENTER) entrar no modo espectador imediatamente (o que irá lhe matar e resultar em -1, caso você esteja vivo); (D) postergar para sua próxima morte; ou (M) postergar para a próxima partida.</li>
+                <li>Se você atualmente já é espectador, a opção terá nome de JOIN GAME, e ao entrar nela será apresentada as opções: (Y/ENTER) entrar na partida imediatamente; ou (M) postergar para a próxima partida.</li>
+                <li>Se você já possui uma transição postergada, a opção terá nome de ABORT SPEC SWITCH, que permitirá você desfazer o postergamento. Além disso, um ícone será exibido no HUD, no lado inferior esquerdo da tela, para deixar isso claro.</li>
+                <li>Existem opções para limitar essas idas e vindas ao modo espectador. Veremos mais sobre isso posteriomente.</li>
+            </ul>
+        </span>
+        <span lang="en">It's also possible to change your spectator status with the <pre>SPEC</pre> console command.</span>
+        <span lang="pt">Também é possível trocar seu status de espectador com o comando de console <pre>SPEC</pre>.</span>
+
+        <span lang="en">While spectating you're free to see the other players screens with the <pre>View Next Player</pre> function (the old coop view/K option). Make sure to configure a key for it again.</span>
+        <span lang="pt">Enquanto estiver no modo espectador, você poderá livremente ver as telas dos demais jogadores com a função <pre>View Next Player</pre> (o antigo K/coopview). Certifique-se de configurar uma tecla para essa função novamente.</span>
+
+        <span lang="en">When going to spectator mode, the current view will be set to Freecam Mode, but you can change it to point to a player (if available) by changing the option on <pre>OPTIONS > DEMO/SPEC SETUP > DEFAULT SPECTATOR VIEW</pre>.</span>
+        <span lang="pt">Ao entrar no modo espectador, a visão inicial será setada para o modo Câmera Livre, porém você pode configurar para que aponte para um jogador (se disponível) ao trocar a opção em <pre>OPTIONS > DEMO/SPEC SETUP > DEFAULT SPECTATOR VIEW</pre>.</span>
+
+        <span lang="en">If you want to start the first match already as a spectator, you can use the <pre>-spec</pre> command line. NukemNet will also have an option on its interface for this.</span>
+        <span lang="pt">Se você quiser iniciar a primeira partida já estando no modo espectador, você pode usar a linha de comando <pre>-spec</pre>. O NukemNet também terá uma opção em sua interface para isso.</span>
+
+        <span lang="en">Chat messages sent by spectators as well as their names on the scorebar will be transparent to better reflect their spectator condition. On the scorebar a small camera icon will be displayed at the left of their names as well.</span>
+        <span lang="pt">Mensagens de chat enviadas por espectadores e seus nomes na barra de pontuação serão transparentes para melhor sinalizar sua condição de espectador. Na barra de pontuação um pequeno ícone de câmera será exibido à esquerda de seus nomes também.</span>
+
+        <span lang="en">The options <pre>FORCE DAMAGE NUMBERS</pre>, <pre>FORCE OUTLINES</pre> and <pre>FORCE OVERHEAD INFO</pre> were expanded to spectator mode as well (they're now both for Spectator and Demo Player).</span>
+        <span lang="pt">As opções de <pre>FORCE DAMAGE NUMBERS</pre>, <pre>FORCE OUTLINES</pre> e <pre>FORCE OVERHEAD INFO</pre> foram expandidas para o modo espectador também (agora valem tanto para o modo espectador quanto para o Player de Demos).</span>
+
+        <span lang="en">New command line <pre>/lockspecs</pre> to lock spectator transitions during a match. It will only be possible to switch from/to spectator by postponing it to the next match.</span>
+        <span lang="pt">Nova linha de comando <pre>/lockspecs</pre> para impedir transições de/para espectador durante uma partida. Somente será possível sair/entar no modo espectador de forma postergada para a partida seguinte.</span>
+
+        <span lang="en">[T/LMS] Limited Gameover Spycam -> Force Gameover on Spectator: Specs can't join back on the curr match</span>
+        <span lang="pt">Netflags.</span>
+
+        <span lang="en">[T/LMS] Limited Gameover Chat -> Restricted Spectator Chat: Specs and players can't chat together</span>
+        <span lang="pt">Netflags.</span>
+    </li>
+
+    <li>
+        <span lang="en">As a compliment to the spectator mode, theres now a <strong>Freecam mode</strong>. The freecam cam be used while spectating or while watching a demo through the Demo Player.</span>
+        <span lang="pt">Como complemento ao modo espectador, há agora o modo de <strong>Câmera Livre</strong>. Esse modo poderá ser utilizado enquanto assistindo uma partida como espectador ou também ao utilizar o Player de Demos.</span>
+
+        <span lang="en">To activate this mode while spectating a match (or while watching a demo via the Demo Player), you have to press the <pre>Toggle Freecam</pre> key, which is set as default to <pre>Backspace</pre>. You can change your freecam binds on <pre>OPTIONS > DEMO/SPEC SETUP > FREECAM OPTIONS > FREECAN HOTKEYS...</pre> if you wish.</span>
+        <span lang="pt">Para ativar esse modo enquanto estiver de espectador (ou enquanto estiver vendo uma demo pelo Player de Demos), você deverá acionar a tecla <pre>Toggle Freecam</pre>, que vem setada por padrão na tecla <pre>Backspace</pre>. Você pode mudar as binds da Câmera Livre em <pre>OPTIONS > DEMO/SPEC SETUP > FREECAM OPTIONS > FREECAN HOTKEYS...</pre>, caso desejar.</span>
+
+        <span lang="en">There's also the <pre>Freecam Speed</pre> hotkey. You can double the Freecam movement speed with it. The default key for it is set to <pre>R</pre> (also the default key for Steroids).</span>
+        <span lang="pt">Também há a tecla de <pre>Freecam Speed</pre>. Você pode dobrar a velocidade de movimentação da Câmera Livre com ela. A tecla padrão vem setada no <pre>R</pre> (mesma tecla padrão do Steroids).</span>
+
+        <span lang="en">Finally, there's also the <pre>Freecam Mode</pre> hotkey. That lets you switch the movement mode. The default key for it is set to <pre>J</pre> (also the default key for JetPack). The options are:</span>
+        <span lang="en">
+            <ul>
+                <li><strong>Normal:</strong> tied to the game physics;</li>
+                <li><strong>Smart (default):</strong> map editor stle of movement;</li>
+                <li><strong>No-Clip:</strong> can pass through walls freely.</li>
+            </ul>
+        </span>
+        <span lang="pt">Finalmente, há também a tecla de <pre>Freecam Mode</pre>. Ela permite você trocar o modo de movimentação. A tecla padrão vem setada no <pre>J</pre> (mesma tecla padrão do JetPack). As opções são:</span>
+        <span lang="en">
+            <ul>
+                <ul>
+                <li><strong>Normal:</strong> tied to the game physics;</li>
+                <li><strong>Smart (padrão):</strong> map editor stle of movement;</li>
+                <li><strong>No-Clip:</strong> can pass through walls freely.</li>
+            </ul>
+        </span>
+
+        <span lang="en">By default, the teleport transitions (e.g. normal teleports, water sectors, "man hole" teleports) will be automatic, but you can switch the option on <pre>OPTIONS > DEMO/SPEC SETUP > FREECAM OPTIONS > TELEPORT TRANSITIONS</pre> to make it require a [OPEN] input.</span>
+        <span lang="pt">Por padrão, as transições de teleportes (e.g. teletransportes normais, setores de água, teleportes estilo bueiro) serão automaticas, mas você pode mudar a opção em <pre>OPTIONS > DEMO/SPEC SETUP > FREECAM OPTIONS > TELEPORT TRANSITIONS</pre> para que seja necessário apertar a tecla [OPEN].</span>
+    </li>
+
+    <li>
+        <span lang="en">The in game chat now has options to send messages only to Active Players or Spectators. Their chart shortcut prefixes are <pre>!</pre> and <pre>$</pre>, respectively.</span>
+        <span lang="pt">O chat do jogo agora possui opções de remetente para jogadores ativos ou jogadores espectadores. Os prefixos de atalho são <pre>!</pre> e <pre>$</pre>, respectivamente.</span>
+    </li>
+
+    <li>
+        <span lang="en">The F7 mode (the 3rd person "view mode") is now called CHASECAM, and, during Demo Playback or while spectating a match, it will be a local toggle that enables it to every player instead of being per-player. When enabled, it will also be possible to zoom in/out with the mouse wheel as well as to orbit around the player with the mouse movement.</span>
+        <span lang="pt">O modo F7 (terceira pessoa) agora é chamado de CHASECAM, e, durante uma reprodução de demo ou ao estar como espectador, ele será um ativado de forma global ao invés de ativável em separado para cada player. Quando acionado, será possível dar zoom in/out com a rodinha do mouse, como também orbitar em volta do player com os movimentos do mouse.</span>
+    </li>
+
+    <li>
+        <span lang="en">The option to toggle MUSIC (ON/OFF) now has a 3rd option named DEMO/SPEC, which will turn the music on ONLY when not activelly playing. Probably a niche feature, but it's useful for people that enjoy the in game music but only disabled it due to it not getting in the way during a serious netplay match.</span>
+        <span lang="pt">A opção para (des)ligar a musica agora tem uma terceira opção chamada DEMO/SPEC, que ligará a musica SOMENTE quando não estiver ativamente jogando. Provavelmente um recurso bem nichado, mas é útil para quem gosta das musicas do jogo porém se ve forçado a desabilitá-las para não atrapalhar nas partidas online.</span>
+    </li>
+
+    <li>
+        <span lang="en">New option on VIDEO SETUP to set the current FOV.</span>
+        <span lang="pt">Nova opção em VIDEO SETUP para setar o FOV.</span>
+    </li>
+
+    <li>
+        <span lang="en">New Netflag: [SURV] PERSISTENT LIVES</span>
+        <span lang="pt"></span>
+    </li>
+
+</ul>
+
+<h2>
+    <span lang="en">Improvements</span>
+    <span lang="pt">Melhorias</span>
+</h2>
+
+<ul>
+    <li>
+        <span lang="en">The Modern Scorebar now automatically reorders the players by their scores (players with higher scores at the top, lower scores are kept at the bottom).</span>
+        <span lang="pt">A barra de pontuação moderna agora automaticamente reordena os jogadores por sua pontução (jogadores com pontuaçoes mais altas ficam em cima e os com pontuaçoes baixas ficam abaixo).</span>
+    </li>
+
+    <li>
+        <span lang="en">The Modern Scorebar now shows a <pre>></pre> at the left of the name of the players in which will be "filtered" with the current recipient shortcut being used (e.g. <pre>*</pre>, <pre>$</pre>). Also, it will show the player ID at the left of the player names when the user wants to send a private message with the <pre>@</pre> prefix.</span>
+        <span lang="pt">A barra de pontuação moderna agora mostrará <pre>></pre> à esquerda do nome dos jogadores que estejam sendo "filtrados" pelo atalho de remetente em uso (e.g. <pre>*</pre>, <pre>$</pre>). Além disso, também será mostrado o ID do jogador à esquerda do seu nome quando o usuário pretender mandar uma mensagem privada com o uso do prefixo <pre>@</pre>.</span>
+    </li>
+
+    <li>
+        <span lang="en">Quote system improved. Now there are global quotes (e.g. "Brightness Level: Six") and local quotes (e.g. "Used Steroids"). Global messages take precedence over local ones, and only they will also be displayed while during the Freecam Mode. Also, the classic Frag Messages now are properly separated per player.</span>
+        <span lang="pt">Sistema das mensagems de quotes foi melhorado. Agora existem as quotes globais (e.g. Brightness Level: Six") e as quotes locais (e.g. "Used Steroids"). As globais tem precedência sobre as locais, e apenas elas serão exibidas durante o modo Câmera livre. Além disso, as mensagens clássicas de frag agora estão devidamente separadas por player.</span>
+    </li>
+    <li>
+        <span lang="en">When adding a new BOT on the <pre>NETPLAY OPTIONS > BOTS...</pre> menu, the next entry will attempt to reuse the same values from the previous entry added/edited.</span>
+        <span lang="pt">Ao adicionar um novo BOT pelo menu <pre>NETPLAY OPTIONS > BOTS...</pre>, a próxima entrada tentará manter os mesmos valores confirmados na entrada adicionada/modificada anteriormente.</span>
+    </li>
+    <li>
+        <span lang="en">The RECORDING SETUP menu was renamed to DEMO/SPEC SETUP, since it now has options related not only to Demos, but also to the Spectator. Various itens inside it were also reordered.</span>
+        <span lang="pt">O menu RECORDING SETUP foi renomeado para DEMO/SPEC SETUP, pois ele agora possui várias opções relacionadas não só com Demos, mas também com o modo espectador. Vários itens dentro dele também foram reordenados.</span>
+    </li>
+
+    <li>
+        <span lang="en">There's now a global toggle for AUTO SCREENSHOTS, which also has a new NETPLAY ONLY option.</span>
+        <span lang="pt">Existe agora uma opçao de (des)ativaçao global de AUTO SCREENSHOTS, que possui também uma nova opção NETPLAY ONLY para somente tirar os auto screenshots em partidas online.</span>
+    </li>
+
+    <li>
+        <span lang="en">The order of the key functions inside the KEYBOARD SETUP screen is now fully reordered in a way that makes more sense.</span>
+        <span lang="pt">A ordem das funçoes de teclas dentro do menu KEYBOARD SETUP foram reordenadas para fazerem mais sentido.</span>
+    </li>
+
+    <li>
+        <span lang="en">The <pre>OPTIONS > GAME OPTIONS > CHAT MODE [CLASSIC/BROADCAST/TO TEAM]</pre> had the <pre>TO TEAM</pre> item removed, as it was useless. Also, it was renamed to <pre>SIMPLIFIED CHAT [OFF/ON]</pre>.</span>
+        <span lang="pt">A opção <pre>OPTIONS > GAME OPTIONS > CHAT MODE [CLASSIC/BROADCAST/TO TEAM]</pre> teve seu item <pre>TO TEAM</pre> removida, pois era inútil. Além disso, a opção foi renomeada para <pre>SIMPLIFIED CHAT [OFF/ON]</pre>.</span>
+    </li>
+
+    <li>
+        <span lang="en">The <pre>OPTIONS > GAME OPTIONS > DISABLE PLAYER COLORS [ON/OFF]</pre> option was redesigned into <pre>PLAYER COLORS [CLASSIC/FORCE UNIQUE/UNRESTRICTED]</pre>. Remember that this is still a local setting, so player colors may b different for different users. The options now behave as follows:</span>        
+        <span lang="en">
+            <ul>
+                <li><strong>CLASSIC:</strong> forces the default sequential colors on everyone. This is the option for players that dislike the new colors.</li>
+                <li><strong>FORCE UNIQUE:</strong> players with custom colors have priority on the color slots. In case of a duplication, the player with the smaller ID have preference. The rest of the players (the ones who did not picked a color + the ones with a duplicated color but with higher player ID) will get the remaining colors, in sequential order.</li>
+                <li><strong>UNRESTRICTED:</strong> like the above, but it allows duplicated colors. Players with color set to AUTO will still receive unused colors.</li>
+            </ul>
+        </span>
+        <span lang="pt">A opção <pre>OPTIONS > GAME OPTIONS > DISABLE PLAYER COLORS [ON/OFF]</pre> foi modificada para ser <pre>PLAYER COLORS [CLASSIC/FORCE UNIQUE/UNRESTRICTED]</pre>. Lembre-se de que essa é uma opção local, então as cores dos jogadores podem ser diferentes para diferentes usuários. As opções agora são a seguir:</span>
+        <span lang="pt">
+            <ul>                
+                <li><strong>CLASSIC:</strong> força as cores padrões sequencias para todos. Esta é a opção para os jogadores que não gostam de cores customizadas.</li>
+                <li><strong>FORCE UNIQUE:</strong> jogadores que optaram por utilizar cores customizadas terão prioridade nos slots de cores. Em caso de duplicação, o jogador com o menor ID terá preferência. O resto dos jogadores (quem não escolher uma cor + quem escolheu duplicata e possui ID maior) receberá as cores restantes, em ordem sequencial.</li>
+                <li><strong>UNRESTRICTED:</strong> como a anterior, mas cores duplicadas são permitidas. Jogadores que deixarem sua cor setada como AUTO ainda receberão cores não utilizadas.</li>
+            </ul>
+        </span>
+
+
+    </li>
+
+
+    <!-- LIXO abaixo -->
+    <li>
+        <span lang="en">
+            The NetFlagC <pre>[DOS] WEAPON SWITCHING BUGS</pre> now has 3 additional effects:
+            <ul>
+                <li>(a) Restores a bug in which, when with HANDREMOTE_WEAPON, using the Next/Prev Weapon functions will simply do nothing</li>
+                <li>(b) Restores a bug in which canceling fire into Next/Prev Weapon doesn't work as expected, instead it will Always do nothing (Prev) or always switch into Expander (Next)</li>
+                <li>(c) Restores a bug in which, when out of ammo for any weapon, when attempting to switch to Next Weapon the game will briefly switch into your empty Pistol, instead of doing nothing</li>
+            </ul>
+	    </span>
+        <span lang="pt">
+            A NetFlagC <pre>[DOS] WEAPON SWITCHING BUGS</pre> agora possui 3 efeitos adicionais:
+            <ul>
+                <li>(a) Restaura o bug no qual, quando carregando o HANDREMOTE_WEAPON (detonador da pipe bomb), o uso das funções Next/Prev Weapon simplesmente não farão nada</li>
+                <li>(b) Restaura o bug no qual o cancelamento de animação de tiro em Next/Prev Weapon não funciona como esperado, ao invés disso ele sempre não fará nada (Prev) ou sempre trocará para a Expander (Next)</li>
+                <li>(c) Restaura o bug no qual, quando sem munição para qualquer arma, ao tentar trocar de arma com a função Next Weapon, o jogo irá brevemente trocar para a sua Pistola vazia, ao invés de não fazer nada</li>
+            </ul>
+        </span>
+    </li>
+</ul>
+
+<h2>
+    <span lang="en">Bug Fixes</span>
+    <span lang="pt">Correções de Bugs</span>
+</h2>
+
+<ul>
+    <li>
+        <span lang="en">Pressing LEFT and RIGHT on the WEAPON PREFFERENCE menu will now work properly.</span>
+        <span lang="pt">Apertar para a esquerda ou direita no menu WEAPON PREFFERENCE agora irá funcionar corretamente.</span>
+    </li>
+    <li>
+        <span lang="en">Starting a new game with multiplayer mode set but without map paremeters (e.g. when the game starts with the menu open and with the green alien background), the game will not falselly accuse an Out Of Sync anymore.</span>
+        <span lang="pt">Ao iniciar um novo jogo em multiplayer mas sem parametros de mapa (e.g. quando o jogo começa com o menu aberto e com o fundo alienígena verde), o jogo não irá mais acusar falsamente um Out Of Sync.</span>
+    </li>
+    <li>
+        <span lang="en">Command line <pre>-color</pre> now works correctly with colors 13, 14, 15 and 16.</span>
+        <span lang="en">Linha de comando <pre>-color</pre> agora funciona corretamente com as cores 13, 14, 15 e 16.</span>
+    </li>
+    <li>
+        <span lang="en">No more false positives on the obituaries list for AutoAimed RPGs with bad hit detection.</span>
+        <span lang="en">Não haverá mais falso positivos na lista de obituarios para RPGs "auto-aimadas" com erro na detecção de hit.</span>
+    </li>
+</ul>
+
+<h2>
+    <span lang="en">xDuke Bug Fixes</span>
+    <span lang="pt">Correções de Bugs do xDuke</span>
+</h2>
+
+<ul>
+    
+</ul>
+
+
+
+
+
+<h2>
+    <span lang="en">Original Bug Fixes</span>
+    <span lang="pt">Correções de Bugs Originais</span>
+</h2>
+
+<ul>
+    <li>
+        <span lang="en"></span>
+        <span lang="pt"></span>
+    </li>
+    
+</ul>

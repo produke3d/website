@@ -20,6 +20,20 @@
             <span lang="pt">Um @ ao lado do nome indica que é uma mensagem privada.</span>
         </label>
     </div>
+    <div class="flex-rows flex-gap-16 flex-align-items-center">
+        <img style="width: 40px;" class="sprite" src="{$common}/res/sprites/spec-message.png" alt="spec-message" title="spec-message">
+        <label class="badge">
+            <span lang="en">A $ next to the name means it's a spectator only message.</span>
+            <span lang="pt">Um $ ao lado do nome indica que é uma mensagem apenas para espectadores.</span>
+        </label>
+    </div>
+    <div class="flex-rows flex-gap-16 flex-align-items-center">
+        <img style="width: 40px;" class="sprite" src="{$common}/res/sprites/activeplayer-message.png" alt="activeplayer-message" title="activeplayer-message">
+        <label class="badge">
+            <span lang="en">A ! next to the name means it's a active player only message.</span>
+            <span lang="pt">Um ! ao lado do nome indica que é uma mensagem apenas para não-espectadores.</span>
+        </label>
+    </div>
 </div>
 
 <span lang="en">In proDuke you can now specify the recipients using shortcuts:</span>
@@ -45,7 +59,7 @@
                 <span lang="en">Send the message to everyone. Example:<br/>
                     Typing <pre>*proDuke is the future</pre> will send the message <strong style="color: var(--progold);">proDuke is the future</strong> to everyone.</span>
                 <span lang="pt">Envia a mensagem para todos. Exemplo:<br/>
-                    Digitar <pre>*proDuke is the future</pre> enviará a mensagem <strong style="color: var(--progold);">proDuke is the future</strong> para todos.</span>
+                    Digitar <pre>*proDuke eh o futuro</pre> enviará a mensagem <strong style="color: var(--progold);">proDuke eh o futuro</strong> para todos.</span>
             </td>
         </tr>
         <tr>
@@ -54,7 +68,27 @@
                 <span lang="en">Sends the message only to your team. Example:<br/>
                     Typing <pre>#CTF is amazing!</pre> will send the message <strong style="color: var(--progold);">CTF is amazing!</strong> to your team allies.</span>
                 <span lang="pt">Envia a mensagem apenas para o seu time. Exemplo:<br/>
-                    Digitar <pre>#CTF is amazing!</pre> enviará a mensagem <strong style="color: var(--progold);">CTF is amazing!</strong> para todos do seu time.</span>
+                    Digitar <pre>#CTF eh dahora!</pre> enviará a mensagem <strong style="color: var(--progold);">CTF eh dahora!</strong> para todos do seu time.</span>
+                    </span>
+            </td>
+        </tr>
+        <tr>
+            <td>$</td>
+            <td>
+                <span lang="en">Sends the message only to spectators. Example:<br/>
+                    Typing <pre>$Spectator mode rocks!</pre> will send the message <strong style="color: var(--progold);">Spectator mode rocks!</strong> to all spectators.</span>
+                <span lang="pt">Envia a mensagem apenas para espectadores. Exemplo:<br/>
+                    Digitar <pre>$Modo espectador ta foda!</pre> enviará a mensagem <strong style="color: var(--progold);">Modo espectador ta foda!</strong> para todos espectadores.</span>
+                    </span>
+            </td>
+        </tr>
+        <tr>
+            <td>!</td>
+            <td>
+                <span lang="en">Sends the message only to non-spectators. Example:<br/>
+                    Typing <pre>!Spectator mode rocks!</pre> will send the message <strong style="color: var(--progold);">Spectator mode rocks!</strong> to all non-spectators.</span>
+                <span lang="pt">Envia a mensagem apenas para quem estiver em jogo (não-espectadores). Exemplo:<br/>
+                    Digitar <pre>!Modo espectador ta foda!</pre> enviará a mensagem <strong style="color: var(--progold);">Modo espectador ta foda!</strong> para todos não-espectadores.</span>
                     </span>
             </td>
         </tr>
@@ -64,21 +98,21 @@
                 <span lang="en">Send the message only to player P, where P is the player number. Example:<br/>
                     Typing <pre>@3You suck!</pre> will send the message <strong style="color: var(--progold);">You suck!</strong> to the player 3 (the player order is the same on the score bars, counting from 1 onwards).</span>
                 <span lang="pt">Envia a mensagem apenas para o jogar P, onde P é o número do jogador. Exemplo:<br/>
-                    Digitar <pre>@3You suck!</pre> enviará a mensagem <strong style="color: var(--progold);">You suck!</strong> para o player 3 (a ordem dos players é a mesma da barra de pontuação, com a contagem começando em 1).</span>
+                    Digitar <pre>@3Tu eh ruim!</pre> enviará a mensagem <strong style="color: var(--progold);">Tu eh ruim!</strong> para o player 3 (a ordem dos players é a mesma da barra de pontuação, com a contagem começando em 1).</span>
             </td>
         </tr>
     </tbody>
 </table>
 
-<span lang="en">You can change the chat behavior to 3 different modes in the menu <pre>Options > Game Options > Chat Mode</pre>.</span>
-<span lang="pt">Você pode mudar o comportamento do chat para 3 modos diferentes no menu <pre>Options > Game Options > Chat Mode</pre>.</span>
+<span lang="en">You can change the chat behavior to a Simplified mode on <pre>OPTIONS > GAME OPTIONS > SIMPLIFIED CHAT</pre>.</span>
+<span lang="pt">Você pode mudar o comportamento do chat para o modo simplificado em <pre>OPTIONS > GAME OPTIONS > SIMPLIFIED CHAT</pre>.</span>
 
 <table>
     <thead>
         <tr>
             <th>
-                <span lang="en">MODE</span>
-                <span lang="pt">MODO</span>
+                <span lang="en">OPTION</span>
+                <span lang="pt">OPÇÃO</span>
             </th>
             <th>
                 <span lang="en">DESCRIPTION</span>
@@ -88,24 +122,17 @@
     </thead>
     <tbody>
         <tr>
-            <td>CLASSIC</td>
+            <td>OFF</td>
             <td>
                 <span lang="en">In this mode, before the message is sent, the game will ask for the message recipient (like in the screenshot above), unless the recipient shortcuts are used.</span>
                 <span lang="pt">Neste modo, antes que a mensagem seja enviada, o jogo perguntará qual o destinatário da mensagem (como na screenshot acima), a não ser que os atalhos de destinatário sejam usados.</span>
             </td>
         </tr>
         <tr>
-            <td>BROADCAST</td>
+            <td>ON</td>
             <td>
-                <span lang="en">In this mode, the game doesn't ask who you want to send the message to, it just sends it to everyone. If you want to send a private message to a player or your team then you'll have to use chat shortcuts.</span>
-                <span lang="pt">Neste modo, o jogo não pergunta para quem você quer enviar a mensagem, ela será enviada para todos. Se você quiser enviar uma mensagem privada para um jogador ou para o seu time você precisará utilizar os atalhos de mensagem.</span>
-            </td>
-        </tr>
-        <tr>
-            <td>TO TEAM</td>
-            <td>
-                <span lang="en">In this mode, the game doesn't ask who you want to send the message to, it will send the message to your team if playing a team mode, otherwise it just sends it to everyone. If you want to send a private message to a player or to everyone then you'll have to use chat shortcuts, like explained previously.</span>
-                <span lang="pt">Neste modo, o jogo não pergunta para quem você quer enviar a mensagem, a mensagem será enviada para o seu time caso estiver jogando um modo de time, caso contrário, será enviada para todos. Se você quiser enviar uma mensagem privada para um jogador ou para todos você precisará utilizar os atalhos de mensagem, como explicado anteriormente.</span>
+                <span lang="en">In this mode, the game doesn't ask who you want to send the message to, it just sends it to everyone by default. If you want to send a private message to a specific recipient then you'll have to use chat shortcut prefixes.</span>
+                <span lang="pt">Neste modo, o jogo não pergunta para quem você quer enviar a mensagem, ela será enviada para todos por padrão. Se você quiser enviar uma mensagem privada para um destinatário específico, você precisará utilizar os prefixos de atalho.</span>
             </td>
         </tr>
     </tbody>
