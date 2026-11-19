@@ -1,0 +1,60 @@
+div#site-header {
+    position: absolute; 
+    top: 24px; 
+    /* left: calc(50% - 144px); */
+    width: calc(100% - 32px);
+}
+
+img#icon {
+    image-rendering: pixelated;
+    height: 64px;
+}
+
+img#logo {
+    image-rendering: pixelated;
+    height: 24px;
+}
+
+img#author {
+    image-rendering: pixelated;
+    height: 16px;
+}
+
+img#site-author {
+    image-rendering: pixelated;
+    height: 16px;
+}
+
+div.stamp {
+
+    position: absolute;
+    top: 60px;
+    left: calc(50% + 60px);
+    padding: 2px 4px;
+    color: #AFE270;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 24px;
+    line-height: 1;    
+    letter-spacing: 1px;
+    filter: url(#stamp-text-texture);
+    animation: stampPulse 2s ease-in-out infinite;
+
+    &::before {
+        border: 3px solid #AFE270;
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        filter: url(#stamp-border-texture);
+    }
+
+}
+
+@keyframes stampPulse {
+    0%, 100% {
+        transform: rotate(20deg) scale(1);
+    }
+    50% {
+        transform: rotate(20deg) scale(1.15);
+    }
+}

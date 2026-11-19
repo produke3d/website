@@ -17,5 +17,3 @@
 [data-team="2"] { color: #a12911; }
 [data-team="3"] { color: #838050; }
 [data-team="4"] { color: #834C30; }
-
-.winner { color: var(--progold); filter: brightness(1.5); }

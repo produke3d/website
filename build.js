@@ -334,13 +334,13 @@ function BuildNavbar() {
             // `);
             const link = menuDictionary[folderName][lang].match(/href=["']([^"']+)["']/i)[1];
             links.push(`
-                <a href="${link}" lang="${lang}">${titleTagMatch.toUpperCase()}</a>
+                <a href="${link}" lang="${lang}">${titleTagMatch}</a>
             `);
         }
         html.push(links.join(""));
     }
 
-    return html.join(`<span class="separator">|</span>`);
+    return html.join(`<span class="separator"></span>`);
 
 }
 

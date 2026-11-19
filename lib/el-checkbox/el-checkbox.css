@@ -9,6 +9,6 @@ label.el-switch {
 label.el-switch>label {
     line-height: 26px;
     height: 26px;
-    font-family: "Verdana";
+    /* font-family: "Verdana"; */
     cursor: pointer;
 }

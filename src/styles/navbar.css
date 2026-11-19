@@ -1,0 +1,23 @@
+div#navbar {
+
+    background-color: #1E1E1E;
+    padding: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0px 5px 5px black;
+    font-size: 14px;
+    line-height: 14px;
+
+    & > a {
+        &.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+
+    & > span.separator {
+        border-left: 1px solid var(--progold);
+    }
+
+}

@@ -47,6 +47,8 @@
         <link rel="stylesheet" href="{$common}/src/styles/mobile.css">
         <link rel="stylesheet" href="{$common}/src/styles/colors.css">
         <link rel="stylesheet" href="{$common}/src/styles/flex.css">
+        <link rel="stylesheet" href="{$common}/src/styles/header.css">
+        <link rel="stylesheet" href="{$common}/src/styles/navbar.css">
         <link rel="stylesheet" href="{$common}/src/styles/menu.css">
         <link rel="stylesheet" href="{$common}/src/styles/style.css">
         <link rel="stylesheet" href="{$common}/src/styles/terminator.css">
@@ -75,7 +77,9 @@
     
                 <div class="flex-justify-content-center">
                     <img id="logo" src="{$common}/res/logo.png" alt="produke logo">
-                </div>      
+                </div>
+
+                <div class="stamp">ALPHA 0.5</div>
                 
                 <!-- <div class="flex-justify-content-center">
                     <img id="author" src="{$common}/res/byhellfire.png" alt="produke author">
@@ -94,10 +98,10 @@
 
                 <div id="navbar" class="flex-columns flex-grow flex-justify-content-center flex-gap-16">
 
-                    <a href="{domain}/en" lang="en">HOME</a>
-                    <a href="{domain}/pt" lang="pt">INÍCIO</a>
+                    <a href="{domain}/en" lang="en">Home</a>
+                    <a href="{domain}/pt" lang="pt">Início</a>
 
-                    <span class="separator">|</span>
+                    <span class="separator"></span>
 
                     {navbar}
 
@@ -126,7 +130,63 @@
 
             </div>
 
-        </div>        
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0;">
+
+            <filter id="stamp-border-texture">
+
+                <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.6"
+                    numOctaves="3"
+                    seed="12"
+                    result="noise"
+                />
+
+                <feColorMatrix
+                    in="noise"
+                    type="saturate"
+                    values="0"
+                    result="grayNoise"
+                />
+
+                <feComponentTransfer in="grayNoise" result="threshold">
+                    <feFuncA
+                        type="discrete"
+                        tableValues="1 0 1 1 1"
+                    />
+                </feComponentTransfer>
+
+                <feComposite
+                    in="SourceGraphic"
+                    in2="threshold"
+                    operator="in"
+                />
+
+            </filter>
+
+            <filter id="stamp-text-texture">
+
+                <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.7"
+                    numOctaves="3"
+                    seed="8"
+                    result="noise"
+                />
+
+                <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="noise"
+                    scale="2"
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                />
+
+            </filter>
+
+        </svg>
 
     </body>
 
