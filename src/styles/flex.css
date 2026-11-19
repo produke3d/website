@@ -121,7 +121,14 @@ div.padding-32 {
 
 div.grid {
     display: grid;
+}
+
+div.grid-4-columns {
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: auto;
-    /* gap: 8px; */
+}
+
+div.grid-2-columns {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
 }

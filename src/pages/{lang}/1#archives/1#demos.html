@@ -37,8 +37,7 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
 
-        const demosDatabaseUrl = "https://raw.githubusercontent.com/produke3d/archives/master/demos.gzip";
-        //const demosDatabaseUrl = "https://cdn.jsdelivr.net/gh/produke3d/archives@master/demos.gzip";
+        const demosDatabaseUrl = "https://raw.githubusercontent.com/produke3d/website/master/res/databases/demos.json.gz";
 
         const gzipBytes = await (await fetch(demosDatabaseUrl)).arrayBuffer();
         const stream = new Blob([gzipBytes]).stream().pipeThrough(new DecompressionStream("gzip"));
@@ -100,7 +99,7 @@
             }
 
             return `
-                <div class="grid">${players.join("")}</div>
+                <div class="grid grid-4-columns">${players.join("")}</div>
             `;
 
         };
@@ -126,8 +125,10 @@
             } else {
                 if (winners.length > 1) {
                     return "DRAW";
-                } else {
+                } else if (winners.length === 1) {
                     return `<span data-color="${winners[0].Id}">${winners[0].Name}</span>`;
+                } else {
+                    return "";
                 }
             }
 

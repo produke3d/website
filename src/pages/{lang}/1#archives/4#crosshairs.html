@@ -1,0 +1,20 @@
+<title lang="en">Crosshairs</title>
+<title lang="pt">Miras</title>
+
+<div class="grid grid-2-columns"></div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", async () => {
+
+        const crosshairDatabaseUrl = "https://raw.githubusercontent.com/produke3d/website/master/res/databases/crosshairs.json.gz";
+
+        const gzipBytes = await (await fetch(crosshairDatabaseUrl)).arrayBuffer();
+        const stream = new Blob([gzipBytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+        const crosshairDatabase = JSON.parse(await new Response(stream).text());
+
+        console.log(crosshairDatabase);
+
+    });
+
+</script>
