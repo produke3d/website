@@ -47,13 +47,15 @@ div:has(>select#lang)[data-suggestion] {
     100% { transform: translateX(-3px); }
 }
 
-button#back-to-top {
+button#back-to-top {    
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
     background-image: url("{$common}/res/icons/up.svg");
     background-size: 32px 32px;
     background-repeat: no-repeat;
     background-position: 50%;
     width: 64px;
     height: 64px;
-    position: sticky;
-    top: 32px;
 }

@@ -10,73 +10,51 @@
         
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">    
 
-        <link rel="shortcut icon" href="{$common}/res/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="{$common}/res/favicon.png" type="image/x-icon">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link rel="stylesheet" href="{$common}/lib/el-checkbox/el-checkbox.css">
         <link rel="stylesheet" href="{$common}/src/styles/colors.css">
         <link rel="stylesheet" href="{$common}/src/styles/flex.css">
-        <link rel="stylesheet" href="{$common}/src/styles/menu.css">
         <link rel="stylesheet" href="{$common}/src/styles/style.css">
-        <link rel="stylesheet" href="{$common}/src/styles/terminator.css">
-
         <link rel="stylesheet" href="{$common}/src/styles/index.css">
-        <script src="{$common}/src/scripts/index.js"></script>
+        <link rel="stylesheet" href="{$common}/src/styles/header.css">
 
-        <link rel="stylesheet" href="{$common}/src/styles/inflames.css">
-        <script src="{$common}/src/scripts/inflames.js"></script>
+        <style>
+
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        </style>
 
     </head>
 
     <body>
 
-        <div class="flex-rows">
-
-            <canvas id="inflames" height="64"></canvas>
-
-            <div id="site-header" class="flex-rows flex-gap-16 padding-16">
-
-                <div class="flex-justify-content-center">
-                    <img id="icon" src="{$common}/res/icon.gif" alt="produke icon">                
-                </div>
-    
-                <div class="flex-justify-content-center">
-                    <img id="logo" src="{$common}/res/logo.png" alt="produke logo">
-                </div>      
-                
-                <!-- <div class="flex-justify-content-center">
-                    <img id="author" src="{$common}/res/byhellfire.png" alt="produke author">
-                </div> -->
-
+        <div class="flex-rows flex-gap-16 flex-justify-content-center flex-align-items-center flex-align-self-center padding-16">
+            
+            <div class="flex-justify-content-center">
+                <img id="icon" src="{$common}/res/icon.gif" alt="produke icon">                
             </div>
 
-            <div class="flex-rows flex-gap-16 padding-16" style="position: absolute; top: 32px; right: 32px;">
-                <button id="toggle-inflames">
-                    <img src="{$common}/res/icons/pause.svg" id="pause-icon" alt="pause animation">
-                    <img src="{$common}/res/icons/play.svg" id="play-icon" alt="play animation">                    
-                </button>
+            <div class="flex-justify-content-center">
+                <img id="logo" src="{$common}/res/logo.png" alt="produke logo">
             </div>
 
-            <div class="flex-rows flex-gap-32">
-        
-                <div id="navbar" class="flex-columns flex-grow flex-justify-content-center flex-gap-16">
+            <hr style="width: 256px;">
 
-                    <a href="{domain}/en" lang="en">ENGLISH</a>
+            <a href="{domain}/en" class="link-button" style="width: 256px;">ENGLISH</a>
+            <a href="{domain}/pt" class="link-button" style="width: 256px;">PORTUGUÊS</a>
 
-                    <span class="separator">|</span>
-
-                    <a href="{domain}/pt" lang="pt">PORTUGUÊS</a>
-
-                </div>
-
-                <!-- <div class="flex-justify-content-center">
-                    <a href="https://github.com/phcs93/produke">
-                        <img id="site-author" src="{$common}/res/sitebylard.png" alt="site author">
-                    </a>                    
-                </div> -->
-
-            </div>
-
-        </div>        
+        </div>
 
     </body>
 
