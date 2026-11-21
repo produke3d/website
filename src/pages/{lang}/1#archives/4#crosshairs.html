@@ -26,36 +26,39 @@
     document.addEventListener("DOMContentLoaded", async () => {
 
         const crosshairDatabaseUrl = "https://raw.githubusercontent.com/produke3d/website/master/res/databases/crosshairs.json.gz";
-
         const gzipBytes = await (await fetch(crosshairDatabaseUrl)).arrayBuffer();
         const stream = new Blob([gzipBytes]).stream().pipeThrough(new DecompressionStream("gzip"));
         const crosshairDatabase = JSON.parse(await new Response(stream).text());
-
         const crosshairs = document.getElementById("crosshairs");
-
         const crosshairElements = [];
 
         for (const crosshair of crosshairDatabase) {
 
             crosshairElements.push(`
-                <div class="crosshair flex-rows padding-16">
-                    <span>${crosshair.Name}.ART</span>
+                <div class="crosshair flex-rows padding-16 flex-gap-16">
+                    <span>${crosshair.Name}.ART by ${crosshair.Author}</span>
                     <div class="flex-columns">
-                        <div class="flex-rows flex-grow">
+                        <div class="flex-rows flex-grow flex-gap-8">
                             <canvas id="${crosshair.Name.toLowerCase()}-2523"></canvas>
-                            <span>#2523</span>    
+                            <div class="flex-columns flex-grow flex-gap-8">
+                                <span>#2523</span>
+                                <span class="tile-size" id="${crosshair.Name.toLowerCase()}-2523-size"></span>
+                            </div>
                         </div>    
-                        <div class="flex-rows flex-grow">
+                        <div class="flex-rows flex-grow flex-gap-8">
                             <canvas id="${crosshair.Name.toLowerCase()}-2527"></canvas>
-                            <span>#2527</span>    
+                            <div class="flex-columns flex-grow flex-gap-8">
+                                <span>#2527</span>    
+                                <span class="tile-size" id="${crosshair.Name.toLowerCase()}-2527-size"></span>
+                            </div>
                         </div>  
                     </div>
                     <div class="flex-columns flex-grow flex-gap-8">
-                        <button class="flex-grow">
+                        <button class="flex-grow swap-tiles" data-name="${crosshair.Name.toLowerCase()}">
                             <img src="{$common}/res/icons/swap.svg" alt="swap" style="width: 16px; vertical-align: middle; margin-top: -4px;">
                             <span>SWAP TILES</span>
                         </button>
-                        <button class="flex-grow">
+                        <button class="flex-grow download-crosshair" data-name="${crosshair.Name.toLowerCase()}">
                             <img src="{$common}/res/icons/download.svg" alt="download" style="width: 16px; vertical-align: middle; margin-top: -4px;">
                             <span>DOWNLOAD</span>
                         </button>
@@ -71,12 +74,21 @@
         const paletteBytes = new Uint8Array(await (await fetch(paletteUrl)).arrayBuffer());
         const palette = new Build.Models.Palette(paletteBytes);
 
+        const crosshairArts = {};
+
         for (const crosshair of crosshairDatabase) {
 
             const name = crosshair.Name.toLowerCase();
             const crosshairUrl = `https://raw.githubusercontent.com/produke3d/archive/master/crosshairs/${name}.art`;
             const crosshairBytes = new Uint8Array(await (await fetch(crosshairUrl)).arrayBuffer());
             const art = new Build.Models.Art(crosshairBytes);
+            crosshairArts[name] = art;
+            renderCrosshair(name, art);
+
+        }
+
+        function renderCrosshair(name, art) {
+            
             const crossTile = art.Tiles[2523-art.Start];
             const circleTile = art.Tiles[2527-art.Start];
             const crossCanvas = document.getElementById(`${name}-2523`);
@@ -84,6 +96,12 @@
 
             drawTile(crossTile.pixels, crossCanvas, palette.Colors);
             drawTile(circleTile.pixels, circleCanvas, palette.Colors);
+
+            const crossSize = document.getElementById(`${name}-2523-size`);
+            const circleSize = document.getElementById(`${name}-2527-size`);
+
+            crossSize.innerHTML = `(${crossTile.pixels.length}x${crossTile.pixels[0].length})`;
+            circleSize.innerHTML = `(${circleTile.pixels.length}x${circleTile.pixels[0].length})`;
 
         }
 
@@ -139,6 +157,46 @@
             resizeObserver.observe(canvas);
 
         }
+
+        document.querySelectorAll("button.swap-tiles").forEach(b => {
+
+            b.onclick = e => {
+
+                const name = b.dataset.name;
+                const art = crosshairArts[name];
+
+                const crossTile = art.Tiles[2523-art.Start];
+                const circleTile = art.Tiles[2527-art.Start];
+
+                art.Tiles[2523-art.Start] = circleTile;
+                art.Tiles[2527-art.Start] = crossTile;
+
+                renderCrosshair(name, art);
+
+            }
+
+        });
+
+        document.querySelectorAll("button.download-crosshair").forEach(b => {
+
+            b.onclick = e => {
+
+                const name = b.dataset.name;
+                const art = crosshairArts[name];
+
+                const downloadUrl = URL.createObjectURL(new Blob([art.Serialize()], {
+                    type: "application/octet-stream"
+                }));
+                const downloadLink = document.createElement("a");
+                downloadLink.href = downloadUrl;
+                downloadLink.download = `${name}.ART`.toUpperCase();
+                downloadLink.click();
+
+                setTimeout(() => URL.revokeObjectURL(downloadUrl), 0);
+
+            }
+
+        });
 
     });
 
