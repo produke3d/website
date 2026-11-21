@@ -1,0 +1,17 @@
+div.grid {
+    display: grid;
+}
+
+div.grid-4-columns {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+}
+
+div.grid-2-columns {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+}
+
+div.grid-gap-32 {
+    gap: 32px;
+}

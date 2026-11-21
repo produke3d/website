@@ -1,7 +1,25 @@
 <title lang="en">Crosshairs</title>
 <title lang="pt">Miras</title>
 
-<div class="grid grid-2-columns"></div>
+<div id="crosshairs" class="grid grid-2-columns grid-gap-32"></div>
+
+<script src="./../../../../lib/build.js/build.js"></script>
+
+<style>
+    div.crosshair {
+        background-color: #050505;
+        border-radius: 10px;
+        canvas {
+            /* width: 100%;
+            height: 256px; */
+            border: 1px solid #2C2C2C;
+            image-rendering: pixelated;
+        }
+        button {
+            width: 100%;
+        }
+    }
+</style>
 
 <script>
 
@@ -13,7 +31,86 @@
         const stream = new Blob([gzipBytes]).stream().pipeThrough(new DecompressionStream("gzip"));
         const crosshairDatabase = JSON.parse(await new Response(stream).text());
 
-        console.log(crosshairDatabase);
+        const crosshairs = document.getElementById("crosshairs");
+
+        const crosshairElements = [];
+
+        for (const crosshair of crosshairDatabase) {
+
+            crosshairElements.push(`
+                <div class="crosshair flex-rows padding-16">
+                    <span>${crosshair.Name}.ART</span>
+                    <div class="flex-columns">
+                        <div class="flex-rows flex-grow">
+                            <canvas id="${crosshair.Name.toLowerCase()}-2523"></canvas>
+                            <span>#2523</span>    
+                        </div>    
+                        <div class="flex-rows flex-grow">
+                            <canvas id="${crosshair.Name.toLowerCase()}-2527"></canvas>
+                            <span>#2527</span>    
+                        </div>  
+                    </div>
+                    <div class="flex-columns flex-grow flex-gap-8">
+                        <button class="flex-grow">
+                            <img src="{$common}/res/icons/swap.svg" alt="swap" style="width: 16px; vertical-align: middle; margin-top: -4px;">
+                            <span>SWAP TILES</span>
+                        </button>
+                        <button class="flex-grow">
+                            <img src="{$common}/res/icons/download.svg" alt="download" style="width: 16px; vertical-align: middle; margin-top: -4px;">
+                            <span>DOWNLOAD</span>
+                        </button>
+                    </div>
+                </div>
+            `);
+
+        }
+
+        crosshairs.insertAdjacentHTML("afterbegin", crosshairElements.join(""));
+
+        const paletteUrl = "{$common}/res/engine/PALETTE.DAT";
+        const paletteBytes = new Uint8Array(await (await fetch(paletteUrl)).arrayBuffer());
+        const palette = new Build.Models.Palette(paletteBytes);
+
+        for (const crosshair of crosshairDatabase) {
+
+            const name = crosshair.Name.toLowerCase();
+            const crosshairUrl = `https://raw.githubusercontent.com/produke3d/archive/master/crosshairs/${name}.art`;
+            const crosshairBytes = new Uint8Array(await (await fetch(crosshairUrl)).arrayBuffer());
+            const art = new Build.Models.Art(crosshairBytes);
+            const crossTile = art.Tiles[2523-art.Start];
+            const circleTile = art.Tiles[2527-art.Start];
+            const crossCanvas = document.getElementById(`${name}-2523`);
+            const circleCanvas = document.getElementById(`${name}-2527`);
+
+            drawTile(crossTile.pixels, crossCanvas, palette.Colors);
+            drawTile(circleTile.pixels, circleCanvas, palette.Colors);
+
+        }
+
+        function drawTile(tile, canvas, palette) {
+
+            canvas.width = tile.length;
+            canvas.height = tile[0].length;
+
+            const context = canvas.getContext("2d");
+            const data = context.createImageData(tile.length, tile[0].length);
+
+            // iterate the Y axis first because the tiles are stored in the opposite coordinate system than the screen memory is stored
+            for (let y = 0; y < tile[0].length; y++) {
+                for (let x = 0; x < tile.length; x++) {                        
+                    const index = tile[x][y];
+                    const color = palette[index];
+                    const i = x + y * tile.length;
+                    data.data[i * 4 + 0] = color.r;
+                    data.data[i * 4 + 1] = color.g;
+                    data.data[i * 4 + 2] = color.b;
+                    data.data[i * 4 + 3] = index === 255 ? 0 : 255;
+                }
+            }
+
+            context.putImageData(data, 0, 0);
+
+        }
 
     });
 
