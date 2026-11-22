@@ -102,19 +102,3 @@ div.flex-gap-16 {
 div.flex-gap-32 {
     gap: 32px;
 }
-
-div.margin-16 {
-    margin: 16px;
-}
-
-div.padding-16 {
-    padding: 16px;
-}
-
-div.margin-32 {
-    margin: 32px;
-}
-
-div.padding-32 {
-    padding: 32px;
-}

@@ -1,0 +1,107 @@
+div.box {
+    background-color: #0E0E0E;
+    border-radius: 10px;
+    padding: 32px;
+    width: 800px;
+    height: min-content;
+}
+
+img.sprite {
+    image-rendering: pixelated;
+    filter: drop-shadow(5px 5px 5px black);
+}
+
+img.screenshot {
+    border: 1px solid var(--progold);
+    box-shadow: 5px 5px 15px black;
+}
+
+label.badge {
+    background-color: #3E3E3E;
+    border-radius: 5px;
+    padding: 4px 8px;
+    display: block;
+    text-align: center;
+    width: 160px;
+}
+
+label.divider {
+    text-align: center !important;
+    color: var(--progold);
+    text-shadow: none;
+    display: flex !important;
+    align-items: center;
+    line-height: 20px;
+    font-weight: bold;
+    width: 100%;
+    /* font-size: 14px; */
+    &::before, &::after {
+        border-top: 1px solid var(--progold);
+        content: "";
+        flex-grow: 1;
+        font-size: 0px;
+        line-height: 0px;
+    }
+    &::before { margin-right: 8px; }
+    &::after { margin-left: 8px; }
+}
+
+div.arg {
+
+    border-radius: 5px;
+    line-height: 32px;
+    min-height: 32px;
+    display: flex;
+    background-color: #1E1E1E;
+    font-family: monospace;
+
+    &::before {
+        display: flex;
+        content: attr(data-arg);
+        width: 192px;
+        min-width: 192px;
+        max-width: 192px;
+        background-color: #3E3E3E;
+        font-family: monospace;
+        font-size: 14px;
+        font-weight: bold;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        line-height: 32px;
+        min-height: 32px;
+        box-sizing: border-box;
+        padding-right: 16px;
+        margin-right: 16px;
+        justify-content: end;        
+    }
+
+}
+
+span[data-arg] {
+    color: var(--progold);
+}
+
+button.copy {
+    &:not(:focus) > span.copied { display: none; }
+    &:focus {
+        background-color: lightgrey;
+        & > span.copy { display: none; }
+    }
+}
+
+a.link-button {
+    background-color: var(--progold);
+    color: black;
+    text-align: center;
+    line-height: 42px;
+    border-radius: 8px;
+    height: 42px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    &:hover {
+        background-color: lightgrey;
+    }
+}

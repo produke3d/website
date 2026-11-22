@@ -1,7 +1,6 @@
 div#site-header {
     position: absolute; 
     top: 24px; 
-    /* left: calc(50% - 144px); */
     width: calc(100% - 32px);
 }
 
