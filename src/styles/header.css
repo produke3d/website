@@ -1,7 +1,6 @@
 div#site-header {
-    position: absolute; 
-    top: 24px; 
-    width: calc(100% - 32px);
+    padding: 32px;
+    background-image: url("../../res/background.png");
 }
 
 img#icon {

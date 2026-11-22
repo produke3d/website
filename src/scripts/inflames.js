@@ -1,15 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // play/pause button
-    localStorage.inflames = localStorage.inflames !== false && localStorage.inflames !== "false"
-    const button = document.getElementById("toggle-inflames");
-    button.dataset.inflames = localStorage.inflames;
-    button.onclick = () => {
-        const inflames = localStorage.inflames === true || localStorage.inflames === "true";
-        localStorage.inflames = !inflames;
-        button.dataset.inflames = !inflames;
-    };
-
     const canvas = document.getElementById("inflames");
     const gl = canvas.getContext("webgl", {
         alpha: false,
@@ -26,7 +16,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     function resize() {
         width = window.innerWidth;
         //height = window.innerHeight;
-        height = 116 + 64;
+        // height = 116 + 64;
+        height = 168;
         canvas.width = width;
         canvas.height = height;
         gl.viewport(0, 0, width, height);

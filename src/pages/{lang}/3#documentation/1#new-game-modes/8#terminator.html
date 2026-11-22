@@ -53,6 +53,34 @@
 <div id="glitch-overlay"></div>
 
 <style>
+
+    :root {
+        --progold: #AA0000;
+        text-shadow: 0px 0px 15px red;
+    }
+
+    :not(li.active a) {
+        color: #AA0000 !important;
+    }
+
+    div#site-header {
+        background-image: none;
+        padding: 0px !important;
+    }
+    
+    img#icon, img#logo {
+        display: none;
+    }
+
+    img#terminator {
+        width: 100px;
+        image-rendering: pixelated;
+        align-self: center;
+        /* filter: drop-shadow(0px 0px 5px #550000); */
+        position: absolute;
+        top: 32px;
+    }    
+
     div.terminator {
         table {
             font-family: monospace, sans-serif;
@@ -74,6 +102,7 @@
         }
 
     }
+
 </style>
 
 <style>
@@ -198,29 +227,9 @@
 
 <script>
 
-    const style = document.createElement('style');
-    style.textContent = `
-        :root {
-            --progold: #AA0000;
-            text-shadow: 0px 0px 15px red;
-        }
-        :not(li.active a) {
-            color: #AA0000 !important;
-        }
-        img#logo {
-            image-rendering: pixelated;
-            height: 192px;
-        }
-        img#site-author {
-            display: none;
-        }
-    `;
-    document.head.appendChild(style);
-
     document.getElementById("site-header").innerHTML = `
-        <div class="flex-justify-content-center">
-            <img id="logo" src="{$common}/res/sprites/terminator.png" alt="terminator">
-        </div>
+        <canvas id="inflames" height="116"></canvas>
+        <img id="terminator" src="{$common}/res/sprites/terminator.png" alt="terminator">
     `;
 
 </script>
@@ -267,3 +276,5 @@
     getIPLocation();
 
 </script>
+
+<script src="{$common}/src/scripts/inflames.js"></script>
