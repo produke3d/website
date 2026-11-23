@@ -177,10 +177,10 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	float fff = f * f * f;
 
 	// original color
-	vec3 fire = 1.5*vec3(f, fff, fff*fff);
+	//vec3 fire = 1.5*vec3(f, fff, fff*fff);
 
-	// progold color
-	//vec3 fire = 1.25 * f * vec3(0.733, 0.635, 0.278);
+	// progold color (turns red in terminator screen)
+	vec3 fire = 1.25 * f * vec3(0.733, 0.635, 0.278);
 	
 	// smoke
 	float smokeNoise = 0.5 + snoise(0.4 * position + timing * vec3(1.0, 1.0, 0.2)) / 2.0;
