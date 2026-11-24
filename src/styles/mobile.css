@@ -1,7 +1,24 @@
 @media (pointer: coarse) and (hover: none) {
 
-    div#container > div {
-        flex-direction: column;
+    body {
+        margin-bottom: 0px !important;
+    }
+
+    div#site-header {
+        display: none;
+    }
+
+    div:has(>div#navbar) {
+        gap: 0px !important;
+    }
+
+    div:has(>select.lang:not(.mobile)) {
+        display: none;
+    }
+
+    div.box {
+        width: 100% !important;
+        border-radius: 0px !important;        
     }
 
     button#back-to-top {

@@ -36,7 +36,7 @@
         </script>
 
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         {alternates}
 
@@ -84,19 +84,38 @@
 
             <div class="flex-rows flex-gap-16">
 
-                <div id="navbar" class="flex-columns flex-grow flex-justify-content-center flex-gap-16">
+                <div id="navbar" class="flex-rows flex-grow flex-justify-content-center">
 
-                    <a href="{domain}/en" lang="en">Home</a>
-                    <a href="{domain}/pt" lang="pt">Início</a>
+                    <div class="mobile-nav-controls">
 
-                    <span class="separator"></span>
+                        <button class="hamburger" type="button" aria-expanded="false" aria-controls="navbar-links">
+                            <img src="{$common}/res/icons/hamburger.svg" alt="menu">
+                        </button>
 
-                    {navbar}
+                        <img src="{$common}/res/favicon.png" alt="produke" class="mobile">
+
+                        <select class="lang mobile">
+                            <option value="en">English</option>
+                            <option value="pt">Português</option>
+                        </select>
+
+                    </div>
+
+                    <div id="navbar-links" class="links flex-justify-content-center">
+
+                        <a href="{domain}/en" lang="en">Home</a>
+                        <a href="{domain}/pt" lang="pt">Início</a>
+
+                        <span class="separator"></span>
+
+                        {navbar}
+
+                    </div>
 
                 </div>
 
                 <div class="flex-justify-content-center">
-                    <select id="lang">
+                    <select class="lang">
                         <option value="en">English</option>
                         <option value="pt">Português</option>
                     </select>

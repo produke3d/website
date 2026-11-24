@@ -9,15 +9,84 @@ div#navbar {
     font-size: 14px;
     line-height: 14px;
 
-    & > a {
+    a {
         &.active {
             font-weight: bold;
             text-decoration: underline;
         }
     }
 
-    & > span.separator {
+    span.separator {
         border-left: 1px solid var(--progold);
+    }
+
+    button, img, select {
+        display: none;
+    }
+
+    div.links {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+}
+
+@media (pointer: coarse) and (hover: none) {
+
+    div#navbar {
+
+        button, img, select {
+            display: block !important;
+        }
+
+        div.mobile-nav-controls {
+
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+
+            button {
+                justify-self: start;
+                background-color: transparent;
+                display: block !important;
+                width: 32px;
+                height: 32px;
+                padding: 0px !important;
+                margin: 0px !important;
+            }
+
+            img {                
+                width: 32px;
+                height: 32px;
+                &.mobile {
+                    justify-self: center;
+                }
+            }
+
+            select.mobile {
+                justify-self: end;
+                 align-self: center;
+            }
+
+        }
+
+        div.links {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+
+            &.is-open {
+                display: flex;
+            }
+
+            span.separator {
+                border-bottom: 1px solid var(--progold);
+            }
+        }
+
     }
 
 }

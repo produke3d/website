@@ -1,13 +1,16 @@
-select#lang {
+select.lang {
     background-color: #050505;
     color: lightgrey;
     border: none;
     outline:0px;
     cursor: pointer;
     height: 22px;
+    &.mobile {
+        background-color: #1E1E1E;
+    }
 }
 
-div[data-suggestion]:has(>select#lang)::after {
+div[data-suggestion]:has(>select.lang)::after {
     content: attr(data-suggestion);
     color: var(--progold);
     font-size: 12px;
@@ -23,7 +26,7 @@ img#hand-icon {
     display: none;
 }
 
-div:has(>select#lang)[data-suggestion] {
+div:has(>select.lang)[data-suggestion] {
     img#hand-icon {
         display: block;
         height: 22px;

@@ -321,17 +321,6 @@ function BuildNavbar() {
         for (const lang of langs) {
             const titleTagRegex = new RegExp(`<title\\s+lang="${lang}">(.*?)<\\/title>`, 'i');
             const titleTagMatch = indexHtmlContent.match(titleTagRegex)[1];
-            const path = titleTagMatch
-                .toLowerCase()                    
-                .replace(/\(.*?\)/, "")
-                .trim()
-                .replace(/ /g, "-")
-                .normalize("NFD")
-                .replace(/\p{Diacritic}/gu, "")
-            ;
-            // links.push(`
-            //     <a href="${domain}/${lang}/${path}" lang="${lang}">${titleTagMatch.toUpperCase()}</a>
-            // `);
             const link = menuDictionary[folderName][lang].match(/href=["']([^"']+)["']/i)[1];
             links.push(`
                 <a href="${link}" lang="${lang}">${titleTagMatch}</a>

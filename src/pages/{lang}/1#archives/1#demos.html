@@ -24,10 +24,10 @@
                 <span lang="en">DURATION</span>
                 <span lang="pt">DURAÇÃO</span>
             </th>
-            <!-- <th>
+            <th>
                 <span lang="en">WINNER</span>
                 <span lang="pt">VENCEDOR</span>
-            </th> -->
+            </th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -75,6 +75,7 @@
 
         const gameModeDictionary = Object.keys(GameMode).reduce((dic, key) => {
             dic[GameMode[key]] = key;
+            if (key === "ONEFCTF") dic[GameMode[key]] = "1FCTF";
             return dic;
         }, []);
 
@@ -121,6 +122,8 @@
 
             const winners = demo.Players.filter(p => p.Winner);
 
+            if (winners.length === 0) return "---";
+
             if (isTeamMode(demo.Mode)) {
 
                 const winnerTeams = new Set(winners.map(p => p.Team));
@@ -155,7 +158,7 @@
                     <td>${getMap(demo)}</td>
                     <td style="white-space: nowrap;">${getPlayers(demo)}</td>
                     <td style="white-space: nowrap;">${demo.Duration}</td>
-                    <!-- <td style="white-space: nowrap;">${getWinner(demo)}</td> -->
+                    <td style="white-space: nowrap;">${getWinner(demo)}</td>
                 </tr>
             `);
         }
