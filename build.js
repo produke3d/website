@@ -224,12 +224,19 @@ function RenameHtmlFilesToIndex() {
     const regex = /\{.*?\}\.html$/;
 
     const rename = (currentSrc, lang, level) => {
+
         for (const entry of fs.readdirSync(currentSrc, { withFileTypes: true })) {
+
             const srcFile = currentSrc + "/" + entry.name;
+
             if (entry.isDirectory()) {
+
                 if (level < 3) {
+
                     rename(srcFile, lang, level + 1);      
+
                 } else {
+
                     // if we are at the third level
                     // we treat the folder as a single page
                     // because all .html files will be merged into one index.html
@@ -284,7 +291,9 @@ function RenameHtmlFilesToIndex() {
                     fs.writeFileSync(`${currentSrc}/${entry.name}/index.html`, contents.join("\n"));                    
 
                 }
+
             } else if (entry.name.endsWith(".html")) {
+
                 if (entry.name.match(regex)) {
                     // if file is {}.html, rename it to index.html
                     fs.renameSync(srcFile, srcFile.replace(regex, "index.html"));
@@ -294,9 +303,12 @@ function RenameHtmlFilesToIndex() {
                     const fileName = path.basename(srcFile, ".html");
                     fs.mkdirSync(`${dirName}/${fileName}`, { recursive: true });
                     fs.renameSync(srcFile, `${dirName}/${fileName}/index.html`);
-                }                
+                }         
+
             }
+
         }
+
     }
 
     // rename all {}.html files to index.html recusively
@@ -346,8 +358,10 @@ function AddCommonHtmlToPages() {
 
         const entries = fs.readdirSync(currentSrc, { withFileTypes: true });
 
-        for (const entry of entries) {            
+        for (const entry of entries) {   
+
             const srcFile = currentSrc + "/" + entry.name;
+
             if (entry.isDirectory()) {
                 walk(srcFile, lang);
                 continue;
@@ -379,10 +393,16 @@ function AddCommonHtmlToPages() {
                 // get main page id
                 const firstLevelPageName = srcFile.split("/")[2].split("#")[1];
 
+                // menuHtml = `
+                //     <div class="flex-rows flex-gap-32">
+                //         ${menuDictionary[firstLevelPageName][lang]}
+                //         <button id="back-to-top"></button>
+                //     </div>
+                // `;
+
                 menuHtml = `
-                    <div class="flex-rows flex-gap-32">
+                    <div class="menu-box">
                         ${menuDictionary[firstLevelPageName][lang]}
-                        <button id="back-to-top"></button>
                     </div>
                 `;
 

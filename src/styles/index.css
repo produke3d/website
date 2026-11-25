@@ -1,3 +1,7 @@
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     
     background-color: #050505;
@@ -9,18 +13,24 @@ body {
     margin: 0px;
     padding: 0px;
     margin-bottom: 32px;
+
+    
     
 }
 
 button#back-to-top {    
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 32px;
+    right: 32px;
     z-index: 9999;
+    background-color: #0E0E0E;
     background-image: url("{$common}/res/icons/up.svg");
     background-size: 32px 32px;
     background-repeat: no-repeat;
     background-position: 50%;
     width: 64px;
     height: 64px;
+    &:hover {
+        background-color: lightgray;
+    }
 }

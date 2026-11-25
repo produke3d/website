@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" height="64" width="64" viewBox="0 0 64 64">
   <g>
-    <path id="path1" transform="rotate(0,32,32) translate(0,10.5210018157959) scale(2,2)  " fill="#000000" d="M15.995972,0L32,21.478999 0,21.478999z" />
+    <path id="path1" transform="rotate(0,32,32) translate(0,10.5210018157959) scale(2,2)  " fill="#bba247" d="M15.995972,0L32,21.478999 0,21.478999z" />
   </g>
 </svg>
-

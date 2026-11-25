@@ -79,7 +79,7 @@
         align-self: center;
         position: absolute;
         top: 32px;
-    }    
+    }
 
     div.terminator {
         table {
@@ -100,7 +100,9 @@
                 }
             }
         }
-
+        span#ipv6 {
+            line-break: anywhere;
+        }
     }
 
 </style>
@@ -231,6 +233,8 @@
         <canvas id="inflames" height="116"></canvas>
         <img id="terminator" src="{$common}/res/sprites/terminator.png" alt="terminator">
     `;
+
+    document.querySelector("div#navbar img.mobile").setAttribute("src", "{$common}/res/sprites/terminator.png");
 
 </script>
 

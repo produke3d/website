@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5 {
     position: relative;
 }
 
-:not(div.menu) ul li {
+:not(div.menu-box) ul li:not(:where(div.menu-box ul li)) {
 
     &:not(:last-child) {
         padding-bottom: 16px;
@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5 {
         font-size: 1.2em;
     }
 
-    & ul > li:first-of-type {
+    & ul > li:first-of-type:not(:where(div.menu-box ul li)) {
         padding-top: 16px;
     }
 

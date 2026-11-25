@@ -35,15 +35,15 @@
     }    
 
     img.screenshot {
-        width: 100%;
-        height: auto;
-        box-sizing: border-box;
+        width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
     }
 
     img.responsive {
-        width: 100%;
-        height: auto;
-        box-sizing: border-box;
+        width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
     }
 
 }
