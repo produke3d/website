@@ -29,3 +29,12 @@ div.menu {
     }
 
 }
+
+@media (pointer: coarse) and (hover: none) {
+
+    div.menu {
+        width: inherit;
+        border-radius: 0px !important;
+    }
+
+}

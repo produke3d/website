@@ -16,13 +16,34 @@
         display: none;
     }
 
-    div.box {
-        width: 100% !important;
-        border-radius: 0px !important;        
-    }
-
     button#back-to-top {
         display: none;
+    }
+
+    div#container > div {
+        flex-direction: column !important;
+        flex-grow: 1;
+    }
+
+    div#container > div > div:has(div.menu) {
+        flex-grow: 1;
+    }
+
+    div.box {
+        width: inherit !important;
+        border-radius: 0px !important;        
+    }    
+
+    img.screenshot {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    img.responsive {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
     }
 
 }

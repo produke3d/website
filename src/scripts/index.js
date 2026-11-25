@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // set current navbar link
     if (currentUrl !== "{domain}/") {
-        const links = Array.from(document.querySelectorAll('div#navbar > a')).slice(1);        
+        const links = Array.from(document.querySelectorAll('div#navbar a')).slice(1);        
         //const activeLink = links.find(link => link.href.split("/")[4] === currentUrl.split("/")[4]);
         const currentMainLink = currentUrl.split("{domain}/")[1].split("/")[1];
         const correspondingMainLink = links.find(link => link.href.split("{domain}/")[1].split("/")[1] === currentMainLink)
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             correspondingMainLink.classList.add("active"); 
         } else {
             if (currentUrl !== "{domain}/") {
-                document.querySelector('div#navbar > a').classList.add("active"); 
+                document.querySelector('div#navbar a').classList.add("active"); 
             }
         }
     }
