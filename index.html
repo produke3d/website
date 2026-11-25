@@ -2,9 +2,10 @@
 
     <head>
 
-        <title>proDuke</title>
-        <meta lang="en" name="description" content="proDuke is a Duke Nukem 3D port based on xDuke 19.7.1. You can play with proDuke on NukemNet. proDuke is made by HellFire and LARD.">
-        <meta lang="pt" name="description" content="proDuke é um port do Duke Nukem 3D baseado no xDuke 19.7.1. Você pode jogar com proDuke no NukemNet. proDuke é feito por HellFire e LARD.">
+        <title>PRODUKE</title>
+
+        <meta lang="en" name="description" content="Duke Nukem 3D port based on xDuke 19.7.1. You can play with proDuke on NukemNet.">
+        <meta lang="pt" name="description" content="Port de Duke Nukem 3D baseado no xDuke 19.7.1. Você pode jogar com o proDuke no NukemNet.">
 
         <script type="application/ld+json">
         {
@@ -19,18 +20,18 @@
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "Organization",
+            "@type": "SoftwareApplication",
             "url": "https://produke.com.br/",
             "sameAs": [
-                "https://github.com/phcs93/produke",
+                "https://github.com/produke3d",
                 "https://youtube.com/@produke3d",
                 "https://discord.com/invite/PAm3CqGc6Y",
                 "https://nukemnet.com/home"
             ],
             "logo": "https://produke.com.br/$common/res/favicon.png",
-            "name": "proDuke",
-            "alternateName": "produke",
-            "description": "proDuke is a Duke Nukem 3D port based on xDuke 19.7.1",
+            "name": "produke",
+            "alternateName": "proDuke",
+            "description": "Duke Nukem 3D port based on xDuke 19.7.1",
             "email": "produke3d@gmail.com"
         }
         </script>
@@ -42,8 +43,10 @@
 
         <link rel="shortcut icon" href="{$common}/res/favicon.png" type="image/x-icon">
 
+        <!-- libs -->
         <link rel="stylesheet" href="{$common}/lib/el-checkbox/el-checkbox.css">
 
+        <!-- styles -->
         <link rel="stylesheet" href="{$common}/src/styles/mobile.css">
         <link rel="stylesheet" href="{$common}/src/styles/colors.css">
         <link rel="stylesheet" href="{$common}/src/styles/credits.css">
@@ -57,8 +60,10 @@
         <link rel="stylesheet" href="{$common}/src/styles/menu.css">
         <link rel="stylesheet" href="{$common}/src/styles/style.css">
 
+        <!-- scripts -->
         <script src="{$common}/src/scripts/prototype.js"></script>
         
+        <!-- index -->
         <link rel="stylesheet" href="{$common}/src/styles/index.css">
         <script src="{$common}/src/scripts/index.js"></script>
 
@@ -66,77 +71,60 @@
 
     <body>
 
-        <div class="flex-rows">
-
-            <div id="site-header" class="flex-rows flex-gap-16 padding-16">
-
-                <div class="flex-justify-content-center">
-                    <img id="icon" src="{$common}/res/icon.gif" alt="produke icon">                
-                </div>
-    
-                <div class="flex-justify-content-center">
-                    <img id="logo" src="{$common}/res/logo.png" alt="produke logo">
-                </div>
-
-                <div class="stamp">ALPHA 0.5</div>
-
-            </div>
-
-            <div class="flex-rows flex-gap-16">
-
-                <div id="navbar" class="flex-rows flex-grow flex-justify-content-center">
-
-                    <div class="mobile-nav-controls">
-
-                        <button class="hamburger" type="button" aria-expanded="false" aria-controls="navbar-links">
-                            <img src="{$common}/res/icons/hamburger.svg" alt="menu">
-                        </button>
-
-                        <img src="{$common}/res/favicon.png" alt="produke" class="mobile">
-
-                        <select class="lang mobile">
-                            <option value="en">English</option>
-                            <option value="pt">Português</option>
-                        </select>
-
-                    </div>
-
-                    <div id="navbar-links" class="links flex-justify-content-center">
-
-                        <a href="{domain}/en" lang="en">Home</a>
-                        <a href="{domain}/pt" lang="pt">Início</a>
-
-                        <span class="separator"></span>
-
-                        {navbar}
-
-                    </div>
-
-                </div>
-
-                <div class="flex-justify-content-center">
-                    <select class="lang">
-                        <option value="en">English</option>
-                        <option value="pt">Português</option>
-                    </select>
-                    <img src="{$common}/res/icons/hand.svg" id="hand-icon" alt="hand">
-                </div>
-        
-                <div id="container" class="flex-justify-content-center">
-                    <div class="flex-columns flex-gap-32">
-                        {menu}
-                        {content}                        
-                    </div>
-                </div>
-
-            </div>
-
+        <!-- header -->
+        <div id="header" class="flex-rows flex-gap-16 padding-16 flex-align-items-center">
+            <img id="symbol" src="{$common}/res/symbol.gif" alt="produke">
+            <img id="logo" src="{$common}/res/logo.png" alt="produke">
+            <div class="stamp">ALPHA 0.5</div>
         </div>
 
+        <!-- navbar -->
+        <div id="navbar">
+
+            <div class="hamburger">
+                <label for="hamburger">
+                    <input type="checkbox" name="hamburger" id="hamburger">
+                    <img src="{$common}/res/icons/hamburger.svg" alt="menu">
+                </label>
+            </div>
+
+            <img id="icon" src="{$common}/res/favicon.png" alt="produke">
+
+            <div class="links">
+
+                <a href="{domain}/en" lang="en">Home</a>
+                <a href="{domain}/pt" lang="pt">Início</a>
+
+                <span class="separator"></span>
+
+                {links}
+
+            </div>
+
+            <img id="hand" src="{$common}/res/icons/hand.svg" alt="hand">
+
+            <select class="lang">
+                <option value="en">English</option>
+                <option value="pt">Português</option>
+            </select>
+
+        </div>
+    
+        <!-- container -->
+        <div id="container" class="flex-justify-content-center">
+            <div class="flex-columns flex-gap-32">
+                {menu}
+                {content}
+            </div>
+        </div>
+
+        <!-- hack to top -->
         <button id="back-to-top"></button>
 
+        <!-- svg texture filters -->
         <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0;">
 
+            <!-- stamp border texture -->
             <filter id="stamp-border-texture">
 
                 <feTurbulence
@@ -169,6 +157,7 @@
 
             </filter>
 
+            <!-- stamp text texture -->
             <filter id="stamp-text-texture">
 
                 <feTurbulence

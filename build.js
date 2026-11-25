@@ -352,7 +352,7 @@ function AddCommonHtmlToPages() {
 
     // replace navbar in common index.html
     const navbar = BuildNavbar();
-    const commonIndexHtml = rawIndexHtml.replace("{navbar}", navbar);
+    const commonIndexHtml = rawIndexHtml.replace("{links}", navbar);
 
     const walk = (currentSrc, lang) => {
 

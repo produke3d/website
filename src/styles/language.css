@@ -1,13 +1,10 @@
 select.lang {
-    background-color: #050505;
+    background-color: #1E1E1E;
     color: lightgrey;
     border: none;
     outline:0px;
     cursor: pointer;
-    height: 22px;
-    &.mobile {
-        background-color: #1E1E1E;
-    }
+    height: 17px;
 }
 
 div[data-suggestion]:has(>select.lang)::after {

@@ -1,13 +1,20 @@
 div#navbar {
 
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+
     background-color: #1E1E1E;
-    padding: 14px;
+    box-shadow: 0px 5px 5px black;
+    padding: 14px;    
+    font-size: 14px;
+    line-height: 14px;
+    justify-content: center;
+
     position: sticky;
     top: 0;
     z-index: 999;
-    box-shadow: 0px 5px 5px black;
-    font-size: 14px;
-    line-height: 14px;
+
+    margin-bottom: 32px;
 
     a {
         &.active {
@@ -19,14 +26,24 @@ div#navbar {
         border-left: 1px solid var(--progold);
     }
 
-    button, img, select {
-        display: none;
-    }
-
     div.links {
+
+        justify-self: center;
+
         display: flex;
         flex-direction: row;
         gap: 16px;
+        justify-content: center;
+
+    }
+
+    select.lang {
+        justify-self: end;
+    }
+
+    /* hide mobile controls */
+    div.hamburger, img#icon {
+        display: none;
     }
 
 }
@@ -34,6 +51,8 @@ div#navbar {
 @media (pointer: coarse) and (hover: none) {
 
     div#navbar {
+
+        margin-bottom: 0px !important;
 
         button, img, select {
             display: block !important;
