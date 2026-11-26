@@ -26,8 +26,9 @@ div#navbar {
         border-left: 1px solid var(--progold);
     }
 
-    div.links {
+    div#links {
 
+        grid-column: 2;
         justify-self: center;
 
         display: flex;
@@ -37,18 +38,55 @@ div#navbar {
 
     }
 
-    select.lang {
+    /* div[data-suggestion]:has(>select#lang)::after {
+        content: attr(data-suggestion);
+        color: var(--progold);
+        font-size: 12px;
+        margin-left: 8px;
+        height: 22px;
+        line-height: 22px;
+        font-weight: bold;
+        padding: 0px 8px;
+        border-radius: 4px;
+    }
+
+    div:has(>select#lang)[data-suggestion] {
+        img#hand {
+            display: block;
+            height: 22px;
+            margin-left: 8px;
+            animation: point 1s infinite;
+        }
+    }
+
+    @keyframes point {
+        0% { transform: translateX(-3px); }
+        50% { transform: translateX(3px); }
+        100% { transform: translateX(-3px); }
+    } */
+
+    select#lang {
+
+        grid-column: 3;
         justify-self: end;
+
+        background-color: #1E1E1E;
+        color: lightgrey;
+        border: none;
+        outline: 0px;
+        cursor: pointer;
+        height: 17px;
+
     }
 
     /* hide mobile controls */
-    div.hamburger, img#icon {
+    label[for="hamburger"], img#icon, img#hand {
         display: none;
     }
 
 }
 
-@media (pointer: coarse) and (hover: none) {
+/* @media (pointer: coarse) and (hover: none) {
 
     div#navbar {
 
@@ -107,4 +145,4 @@ div#navbar {
 
     }
 
-}
+} */

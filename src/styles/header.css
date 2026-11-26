@@ -1,8 +1,12 @@
 div#header {
 
-    background-image: url("../../res/bighole.png");
-    padding: 32px;
-    
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;    
+    align-items: center;
+    background-image: url("{$common}/res/bighole.png");
+
     img#symbol {
         image-rendering: pixelated;
         height: 64px;
@@ -13,17 +17,7 @@ div#header {
         height: 24px;
     }
 
-    img#author {
-        image-rendering: pixelated;
-        height: 16px;
-    }
-
-    img#site-author {
-        image-rendering: pixelated;
-        height: 16px;
-    }
-
-    div.stamp {
+    div#stamp {
 
         position: absolute;
         top: 60px;
@@ -35,7 +29,7 @@ div#header {
         line-height: 1;    
         letter-spacing: 1px;
         filter: url(#stamp-text-texture);
-        animation: stampPulse 2s ease-in-out infinite;
+        animation: pulse 2s ease-in-out infinite;
 
         &::before {
             border: 3px solid #AFE270;
@@ -47,10 +41,10 @@ div#header {
         }
 
     }
-    
+
 }
 
-@keyframes stampPulse {
+@keyframes pulse {
     0%, 100% {
         transform: rotate(20deg) scale(1);
     }

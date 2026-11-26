@@ -1,4 +1,4 @@
-select:not(.lang), input:not([type="checkbox"]) {
+select:not(#lang), input:not([type="checkbox"]) {
     background-color: black;
     border-radius: 5px;
     border: 1px solid darkgray;

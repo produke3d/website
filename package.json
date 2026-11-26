@@ -1,10 +1,10 @@
 {
   "name": "produke",
   "version": "1.0.0",
-  "description": "proDuke website",
-  "main": "build.js",
+  "description": "produke website",
+  "main": "transpile",
   "scripts": {
-    "build": "node build.js http://127.0.0.1:3000/produke/website/bin"
+    "transpile": "node transpile.js http://127.0.0.1:3000/produke/website/bin"
   },
   "author": "phcs93",
   "license": "ISC"

@@ -2,9 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-
 const langs = ["en", "pt"];
-
 const domain = process.argv[2];
 const commonFolder = `${domain}/$common`;
 
@@ -70,8 +68,6 @@ function BuildAlternateLinksDictionary() {
     return dictionary;
 
 }
-
-const alternateLinkDictionary = BuildAlternateLinksDictionary();
 
 function BuildMenuDictionary() {
 
@@ -156,8 +152,6 @@ function BuildMenuDictionary() {
 
 }
 
-const menuDictionary = BuildMenuDictionary();
-
 function CreateBinFolder() {
 
     // remove bin folder if it exists
@@ -170,7 +164,7 @@ function CreateBinFolder() {
 
 }
 
-function copyCNAME() {
+function CopyCNAME() {
     fs.cpSync("CNAME", "bin/CNAME");
 }
 
@@ -186,6 +180,10 @@ function CopyCommonFiles() {
 
     // copy landing page to bin folder
     fs.cpSync("src/pages/{landing-page}.html", "bin/index.html");
+
+    // copy index.js and index.css to root of bin
+    fs.cpSync("index.js", `bin/index.js`);
+    fs.cpSync("index.css", `bin/index.css`);
 
 }
 
@@ -358,7 +356,7 @@ function AddCommonHtmlToPages() {
 
         const entries = fs.readdirSync(currentSrc, { withFileTypes: true });
 
-        for (const entry of entries) {   
+        for (const entry of entries) {
 
             const srcFile = currentSrc + "/" + entry.name;
 
@@ -393,13 +391,6 @@ function AddCommonHtmlToPages() {
                 // get main page id
                 const firstLevelPageName = srcFile.split("/")[2].split("#")[1];
 
-                // menuHtml = `
-                //     <div class="flex-rows flex-gap-32">
-                //         ${menuDictionary[firstLevelPageName][lang]}
-                //         <button id="back-to-top"></button>
-                //     </div>
-                // `;
-
                 menuHtml = `
                     <div class="menu-box">
                         ${menuDictionary[firstLevelPageName][lang]}
@@ -414,6 +405,7 @@ function AddCommonHtmlToPages() {
                 .replace("{content}", `<div id="${pageId === lang ? "home" : pageId}" class="box flex-rows flex-gap-32">${currentHtml}</div>`)
                 .replace("{alternates}", alternatesHtml.join("\n"))
             ;
+
             fs.writeFileSync(srcFile, replacedHtml, "utf-8");
 
         }
@@ -423,6 +415,7 @@ function AddCommonHtmlToPages() {
     for (const lang of langs) {
         walk(`bin/${lang}`, lang);
     }
+
 }
 
 function TranslateFoldersNames() {
@@ -574,8 +567,11 @@ ${sitemapUrls.join("\n")}
     
 }
 
+const alternateLinkDictionary = BuildAlternateLinksDictionary();
+const menuDictionary = BuildMenuDictionary();
+
 CreateBinFolder();
-copyCNAME();
+CopyCNAME();
 CopyCommonFiles();
 CopyPagesToLangFolders();
 RenameHtmlFilesToIndex();
