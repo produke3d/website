@@ -63,13 +63,13 @@
         color: #AA0000 !important;
     }
 
-    div#site-header {
+    div#header {
         background-image: none;
         padding: 0px !important;
         height: 168px;
     }
     
-    img#icon, img#logo {
+    img#symbol, img#logo, div#stamp {
         display: none;
     }
 
@@ -229,12 +229,10 @@
 
 <script>
 
-    document.getElementById("site-header").innerHTML = `
+    document.getElementById("header").innerHTML = `
         <canvas id="inflames" height="116"></canvas>
         <img id="terminator" src="{$common}/res/sprites/terminator.png" alt="terminator">
     `;
-
-    document.querySelector("div#navbar img.mobile").setAttribute("src", "{$common}/res/sprites/terminator.png");
 
 </script>
 
