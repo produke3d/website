@@ -72,7 +72,13 @@ div.arg {
         box-sizing: border-box;
         padding-right: 16px;
         margin-right: 16px;
-        justify-content: end;        
+        justify-content: end;       
+        @media (pointer: coarse) and (hover: none) {
+            width: initial;
+            min-width: initial;
+            max-width: initial;
+            padding-left: 16px;
+        } 
     }
 
 }

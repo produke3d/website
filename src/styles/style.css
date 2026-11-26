@@ -78,6 +78,7 @@ pre {
     background-color: #1E1E1E;
     @media (pointer:none), (pointer:coarse) {
         text-wrap: auto;
+        line-break: anywhere;
     }
 }
 
@@ -101,6 +102,11 @@ table {
     td, th {
         border: 1px solid #2C2C2C;
         padding: 8px;
+    }
+
+    @media (pointer:none), (pointer:coarse) {
+        text-wrap: auto;
+        line-break: loose;
     }
 
 }

@@ -514,6 +514,50 @@ function ReplaceCommonPath() {
 
 }
 
+function AddZeroWidthSpace() {
+
+    // this function will add a "&#8203" after every specified character
+    // so css can properly add line breaks where there wouldn't normally be
+    // for now the specified character is just common back slashes (/) that are enclosed in brackets
+
+    const walk = (currentSrc) => {
+
+        const entries = fs.readdirSync(currentSrc, { withFileTypes: true });
+
+        for (const entry of entries) {
+
+            const srcFile = currentSrc + "/" + entry.name;
+
+            if (entry.isDirectory()) {
+                walk(srcFile);
+                continue;
+            }
+
+            if (!srcFile.endsWith(".html")) continue;
+
+            const html = fs.readFileSync(srcFile, "utf-8");
+
+            const replacedHtml = html.replace(
+                /<table\b[^>]*>[\s\S]*?<\/table\s*>/gi,
+                (tableHtml) => tableHtml
+                    .split(/(<[^>]*>)/g)
+                    .map((part) => {
+                        if (part.startsWith("<") && part.endsWith(">")) return part;
+                        return part.replace(/\/(?!&#8203;)/g, "/&#8203;");
+                    })
+                    .join("")
+            );
+
+            fs.writeFileSync(srcFile, replacedHtml, "utf-8");
+
+        }
+
+    };
+
+    walk("bin");
+
+}
+
 function GenerateSitemap() {
 
     const sitemapUrls = [];
@@ -579,4 +623,5 @@ AddCommonHtmlToPages();
 TranslateFoldersNames();
 FilterLangTags();
 ReplaceCommonPath();
+AddZeroWidthSpace();
 GenerateSitemap();
