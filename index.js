@@ -1,20 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const mobileNavbar = window.matchMedia("(pointer: coarse) and (hover: none)");
-    const hamburger = document.querySelector("button.hamburger");
-    const navbarLinks = document.querySelector("#navbar-links");
-
-    if (hamburger && navbarLinks) {
-        hamburger.addEventListener("click", () => {
-            if (!mobileNavbar.matches) {
-                return;
-            }
-
-            const isOpen = navbarLinks.classList.toggle("is-open");
-            hamburger.setAttribute("aria-expanded", String(isOpen));
-        });
-    }
-
     // supported languages
     const supportedLangs = ["en", "pt"];
 
@@ -32,44 +17,41 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const langBox = document.getElementById("lang");
 
-    if (langBox) {
+    // shows a tooltip suggesting the user to change the language
+    function suggestLanguage(lang) {
+        document.querySelector("div#suggestion > span").innerHTML = langSuggestions[lang];
+        document.querySelector("div#suggestion > img").style.visibility = "visible";
+    }
 
-        // shows a tooltip suggesting the user to change the language
-        function suggestLanguage(lang) {
-            langBox.parentElement.dataset.suggestion = langSuggestions[lang];
+    // if user is using a supported language
+    if (supportedLangs.includes(browserLang)) {
+
+        // if url language is not browser language
+        if (urlLang !== browserLang) {
+            // suggest user to use their language
+            suggestLanguage(browserLang);
         }
 
-        // if user is using a supported language
-        if (supportedLangs.includes(browserLang)) {
+    } else {
 
-            // if url language is not browser language
-            if (urlLang !== browserLang) {
-                // suggest user to use their language
-                suggestLanguage(browserLang);
-            }
-
-        } else {
-
-            // if we don't support user language
-            // and user is not using english        
-            if (urlLang !== "en") {
-                // suggest user to use english
-                suggestLanguage("en");
-            }
-
+        // if we don't support user language
+        // and user is not using english        
+        if (urlLang !== "en") {
+            // suggest user to use english
+            suggestLanguage("en");
         }
-
-        // set combobox language to current url language
-        langBox.value = urlLang;
-
-        // change language combobox event
-        langBox.onchange = (e) => {
-            const selector = `link[hreflang="${e.target.value}"]`;
-            const href = document.querySelector(selector).href
-            window.location.href = href;
-        };
 
     }
+
+    // set combobox language to current url language
+    langBox.value = urlLang;
+
+    // change language combobox event
+    langBox.onchange = (e) => {
+        const selector = `link[hreflang="${e.target.value}"]`;
+        const href = document.querySelector(selector).href
+        window.location.href = href;
+    };
 
     const currentUrl = window.location.href;
 

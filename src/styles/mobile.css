@@ -4,43 +4,25 @@
         margin-bottom: 0px !important;
     }
 
-    div#site-header {
-        display: none;
-    }
-
-    div:has(>div#navbar) {
-        gap: 0px !important;
-    }
-
-    div:has(>select.lang:not(.mobile)) {
-        display: none;
-    }
-
-    button#back-to-top {
-        display: none;
-    }
-
+    /* menu */
     div#container > div {
         flex-direction: column !important;
         flex-grow: 1;
     }
 
+    /* menu  */
     div#container > div > div:has(div.menu) {
         flex-grow: 1;
     }
 
+    /* content */
     div.box {
         width: inherit !important;
         border-radius: 0px !important;        
     }    
 
-    img.screenshot {
-        width: 100% !important;
-        height: auto !important;
-        box-sizing: border-box !important;
-    }
-
-    img.responsive {
+    /* try to make it not need the responsive class */
+    img.screenshot, img.responsive {
         width: 100% !important;
         height: auto !important;
         box-sizing: border-box !important;

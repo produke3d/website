@@ -19,8 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      # - run: npm install
-      - run: node build.js https://produke.com.br
+      - run: node transpile.js https://produke.com.br
       - uses: actions/upload-pages-artifact@v3
         with:
           path: bin

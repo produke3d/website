@@ -35,3 +35,9 @@ button#back-to-top {
         background-color: lightgray;
     }
 }
+
+@media (pointer: coarse) and (hover: none) {
+    button#back-to-top {
+        display: none;
+    }
+}
