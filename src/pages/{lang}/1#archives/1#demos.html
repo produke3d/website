@@ -1,45 +1,30 @@
 <title lang="en">Demos</title>
 <title lang="pt">Demos</title>
 
-<table id="demos" class="archives">
-    <thead>
-        <tr>
-            <th>
-                <span lang="en">DATE</span>
-                <span lang="pt">DATA</span>
-            </th>
-            <th>
-                <span lang="en">MODE</span>
-                <span lang="pt">MODO</span>
-            </th>
-            <th>
-                <span lang="en">MAP</span>
-                <span lang="pt">MAPA</span>
-            </th>
-            <th>
-                <span lang="en">PLAYERS</span>
-                <span lang="pt">JOGADORES</span>
-            </th>
-            <th>
-                <span lang="en">DURATION</span>
-                <span lang="pt">DURAÇÃO</span>
-            </th>
-            <th>
-                <span lang="en">WINNER</span>
-                <span lang="pt">VENCEDOR</span>
-            </th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+<div id="demos"></div>
 
 <style>
-    table {
-        tbody {
-            tr {
-                cursor: pointer;
-                &:hover {
-                    background-color: #1C1C1C;
+    div#demos {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        div.demo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+            border: 1px solid #2C2C2C;
+            padding: 16px;
+            box-shadow: 2px 2px 2px black;
+            span[data-field] {
+                &::before {
+                    display: inline-block;                    
+                    font-weight: bold;
+                    text-align: right;
+                    width: 64px;
+                    margin-right: 16px;
+                    content: attr(data-field);
                 }
             }
         }
@@ -56,7 +41,7 @@
         const stream = new Blob([gzipBytes]).stream().pipeThrough(new DecompressionStream("gzip"));
         const demoDatabase = JSON.parse(await new Response(stream).text());
 
-        const trs = [];
+        const demoHtmls = [];
         
         const isTeamMode = mode => [2,3,4,5,8].includes(mode);
 
@@ -101,7 +86,13 @@
                         <span>${p.Name}</span>
                         <span>[${p.Score}]</span>
                     </div>
-                `;            
+                `;    
+                // return `
+                //     <div class="flex-row flex-no-wrap flex-justify-content-center flex-gap-4" ${attr}>
+                //         <span>WWWWWWWWWWWW</span>
+                //         <span>[999]</span>
+                //     </div>
+                // `;            
             };
 
             let players = [];
@@ -151,19 +142,19 @@
         };
 
         for (const demo of demoDatabase.sort((a,b) => new Date(b.StartDateTime) - new Date(a.StartDateTime))) {
-            trs.push(`
-                <tr>
-                    <td style="white-space: nowrap;">${demo.StartDateTime.replace(" ", "<br>")}</td>
-                    <td style="white-space: nowrap;">${gameModeDictionary[demo.Mode]}</td>
-                    <td>${getMap(demo)}</td>
-                    <td style="white-space: nowrap;">${getPlayers(demo)}</td>
-                    <td style="white-space: nowrap;">${demo.Duration}</td>
-                    <td style="white-space: nowrap;">${getWinner(demo)}</td>
-                </tr>
+            demoHtmls.push(`
+                <div class="demo">
+                    <span data-field="DATE">${demo.StartDateTime}</span>
+                    <span data-field="MODE">${gameModeDictionary[demo.Mode]}</span>
+                    <span data-field="DURATION">${demo.Duration}</span>
+                    <span data-field="WINNER">${getWinner(demo)}</span>
+                </div>
             `);
         }
 
-        document.querySelector("table#demos > tbody").insertAdjacentHTML("afterbegin", trs.join(""));
+        /*<td style="white-space: nowrap;">${getPlayers(demo)}</td>*/
+
+        document.getElementById("demos").insertAdjacentHTML("afterbegin", demoHtmls.join(""));
 
     });
 
