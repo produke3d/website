@@ -10,22 +10,24 @@
         gap: 16px;
         div.demo {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 8px;
             background-color: #1E1E1E;
             border-radius: 10px;
             border: 1px solid #2C2C2C;
             padding: 16px;
             box-shadow: 2px 2px 2px black;
-            span[data-field] {
-                &::before {
-                    display: inline-block;                    
+            div.field {
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                span:first-of-type {
                     font-weight: bold;
                     text-align: right;
-                    width: 64px;
-                    margin-right: 16px;
-                    content: attr(data-field);
                 }
+            }
+            @media (pointer: coarse) and (hover: none) {
+                flex-direction: column;
             }
         }
     }
@@ -121,11 +123,12 @@
                 if (winnerTeams.size > 1) {
                     return "DRAW";
                 } else {
+                    const score = winners.reduce((total, winner) => total += winner.Score, 0);
                     switch (winnerTeams.values().next().value) {
-                        case 1: return `<span data-team="1">BLUE</span>`;
-                        case 2: return `<span data-team="2">RED</span>`;
-                        case 3: return `<span data-team="3">GREEN</span>`;
-                        case 4: return `<span data-team="4">BROWN</span>`;
+                        case 1: return `<span data-team="1">BLUE [${score}]</span>`;
+                        case 2: return `<span data-team="2">RED [${score}]</span>`;
+                        case 3: return `<span data-team="3">GREEN [${score}]</span>`;
+                        case 4: return `<span data-team="4">BROWN [${score}]</span>`;
                     }
                 }
 
@@ -133,7 +136,7 @@
                 if (winners.length > 1) {
                     return "DRAW";
                 } else if (winners.length === 1) {
-                    return `<span data-color="${winners[0].Id}">${winners[0].Name}</span>`;
+                    return `<span data-color="${winners[0].Id}">${winners[0].Name} [${winners[0].Score}]</span>`;
                 } else {
                     return "";
                 }
@@ -144,10 +147,26 @@
         for (const demo of demoDatabase.sort((a,b) => new Date(b.StartDateTime) - new Date(a.StartDateTime))) {
             demoHtmls.push(`
                 <div class="demo">
-                    <span data-field="DATE">${demo.StartDateTime}</span>
-                    <span data-field="MODE">${gameModeDictionary[demo.Mode]}</span>
-                    <span data-field="DURATION">${demo.Duration}</span>
-                    <span data-field="WINNER">${getWinner(demo)}</span>
+                    <div class="field">                            
+                        <span lang="en">DATE</span>
+                        <span lang="pt">DATA</span>
+                        <span>${demo.StartDateTime}</span>    
+                    </div>
+                    <div class="field">                            
+                        <span lang="en">MODE</span>
+                        <span lang="pt">MODO</span>
+                        <span>${gameModeDictionary[demo.Mode]}</span>
+                    </div>
+                    <div class="field">                            
+                        <span lang="en">DURATION</span>
+                        <span lang="pt">DURAÇÃO</span>
+                        <span>${demo.Duration}</span>
+                    </div>
+                    <div class="field">                            
+                        <span lang="en">WINNER</span>
+                        <span lang="pt">VENCEDOR</span>
+                        ${getWinner(demo)}
+                    </div>
                 </div>
             `);
         }
